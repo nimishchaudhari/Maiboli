@@ -1,6 +1,5 @@
 # maiboli
 
-This is an attempt to build maiboli based on marcelogdeandrade's PythonCompiler git build.
+This is an attempt to build functions that are written in Marathi Devanagari script.
 
-https://github.com/marcelogdeandrade/PythonCompiler
 
