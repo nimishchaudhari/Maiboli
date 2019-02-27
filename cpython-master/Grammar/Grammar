@@ -73,7 +73,7 @@ compound_stmt: if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef 
 async_stmt: 'async' (funcdef | with_stmt | for_stmt)
 if_stmt: 'if' namedexpr_test ':' suite ('elif' namedexpr_test ':' suite)* ['else' ':' suite]
 while_stmt: 'while' namedexpr_test ':' suite ['else' ':' suite]
-for_stmt: 'for' exprlist 'in' testlist ':' [TYPE_COMMENT] suite ['else' ':' suite]
+for_stmt: 'तोपर्यंत' exprlist 'in' testlist ':' [TYPE_COMMENT] suite ['else' ':' suite]
 try_stmt: ('try' ':' suite
            ((except_clause ':' suite)+
             ['else' ':' suite]
@@ -143,7 +143,7 @@ argument: ( test [comp_for] |
             '*' test )
 
 comp_iter: comp_for | comp_if
-sync_comp_for: 'for' exprlist 'in' or_test [comp_iter]
+sync_comp_for: 'तोपर्यंत' exprlist 'in' or_test [comp_iter]
 comp_for: ['async'] sync_comp_for
 comp_if: 'if' test_nocond [comp_iter]
 
