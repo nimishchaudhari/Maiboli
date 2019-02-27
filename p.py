@@ -1,6 +1,16 @@
 import os
+import sys
+
+arg1 = sys.argv[1]
+arg1 = str(arg1)
 eng=open('op.py','w')
-file = open('Test.py','r')
+
+try:
+	file = open(arg1,'r')
+except FileNotFoundError:
+	print("Program input file error")
+else:
+	print("File input successful")
 arr = file.readlines()
 i = len(arr)
 for x in arr:
@@ -22,7 +32,9 @@ ip = eng.read()
 try:
 	exec(ip)
 except SyntaxError:
-	print('error')
+	print(' काही तरही टायपिंग चूक आहे ')
+else:
+	print('प्रोग्रॅम यशस्वीरित्या पूर्ण झाला')
 
 os.remove('op.py')
 
