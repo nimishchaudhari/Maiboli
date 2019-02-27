@@ -4,3 +4,8 @@ This is an attempt to make a parser that will take input text from the user in f
 
 Then this parsed text will be copied in a new file, that will be then executed by the python compiler to run and show output as per the program.
 
+TO TRY, WRITE code in MARATHI as PYTHON's syntax
+
+to execute: python p.py filename.py
+
+PYTHON 3 needed for operation!
