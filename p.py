@@ -36,6 +36,6 @@ except SyntaxError:
 else:
 	print('प्रोग्रॅम यशस्वीरित्या पूर्ण झाला')
 
-os.remove('op.py')
+#os.remove('op.py')
 
 
