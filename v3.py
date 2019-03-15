@@ -47,13 +47,13 @@ total_dictionary_items = len(dix.en)
 #Read the input file
 arr = file.readlines()
 i = len(arr)
+
 for y in arr:
-    for x in dix.en:
-        count = dix.en.index(x)
-#Here, I'm supposed to add a logic to exclude the ddictionary translation of open and close of quote marks,
-#This is to avoid bloody replacing of words from inside statements.
-y = y.replace(dix.mar[count],dix.en[count])        
-eng.write(y)
+        for x in dix.en:
+                count = dix.en.index(x)
+                y = y.replace(dix.mar[count],dix.en[count])
+        eng.write(y)
+
 file.close()
 eng.close()
 def final_run():
