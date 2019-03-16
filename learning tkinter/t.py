@@ -1,21 +1,28 @@
 import tkinter as tk
-    
+from tkinter import *
+from tkinter import ttk
 
-def write_slogan():
-    print("Tkinter is easy to use!")
-
-root = tk.Tk()
-frame = tk.Frame(root)
-frame.pack()
-
-button = tk.Button(frame, 
-                   text="QUIT", 
-                   fg="red",
-                   command=quit)
-button.pack(side=tk.LEFT)
-slogan = tk.Button(frame,
-                   text="Hello",
-                   command=write_slogan)
-slogan.pack(side=tk.LEFT)
-
-root.mainloop()
+class karl( Frame ):
+    def __init__( self ):
+        tk.Frame.__init__(self)
+        self.pack()
+        self.master.title("मायबोली")
+        self.button1 = Button( self, text = u"मायबोली", width = 25,
+                               command = self.new_window )
+        self.button1.grid( row = 0, column = 1, columnspan = 2, sticky = W+E+N+S )
+    def new_window(self):
+        self.newWindow = karl2()
+class karl2(Frame):     
+    def __init__(self):
+        new =tk.Frame.__init__(self)
+        new = Toplevel(self)
+        new.title("karlos More Window")
+        new.button = tk.Button(  text = "PRESS TO CLOSE", width = 25,
+                                 command = self.close_window )
+        new.button.pack()
+    def close_window(self):
+        self.destroy()
+def main(): 
+    karl().mainloop()
+if __name__ == '__main__':
+    main()

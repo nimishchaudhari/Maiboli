@@ -34,7 +34,7 @@ total_dictionary_items = len(dix.en)
 
 #Tkinter main window (container)
 master = tk.Tk()
-master.title('मायबोली')
+master.title('  ')
 
 
 #trying button
@@ -51,7 +51,7 @@ run_button = tk.Button(master,text='Print', command=master.destroy)
 run_button.pack()
 
 
-inputtext  =Text(master, option=value)
+inputtext  =tk.Text(master, option=value)
 
 
 master.mainloop()
@@ -60,7 +60,8 @@ tk.Label(master, text="Input your marathi text").grid(row=2)
 e1 = tk.Entry(master)
 e1.grid(row=2, column=2)
 
-entry.bind("<Return>", evaluate)
+tk.Entry.bind("<Return>",x)
+
 
 
 arr = ['x']             #= file.readlines()
