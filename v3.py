@@ -61,8 +61,9 @@ def final_run():
         ip = eng.read()
         exec(ip)
         os.remove('op.py')
-result = StringIO()
- 
+
+
+result = StringIO() 
 sys.stdout = result
 #Do stuff here
 final_run()
