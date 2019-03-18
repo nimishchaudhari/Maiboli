@@ -30,6 +30,7 @@ class maiboli:
                 count = dix.en.index(x) 
                 y = y.replace(dix.mar[count],dix.en[count])
                 #print('reached line 30')
+            y = y+'\n'
             eng.write(y)
         print('line 32')
         eng.close()
@@ -37,7 +38,7 @@ class maiboli:
         eng = open('op.py','r')
         print('reached line 36 opened read')
         self.arr = eng.readlines()
-        print('reached line 37')
+        print(self.arr)
         #eng = open('op.py','r')        
         eng.close()
         self.displayoutput()
@@ -51,6 +52,7 @@ class maiboli:
             result = StringIO() 
             sys.stdout = result
             #Do stuff here
+            self.eng_file.seek(0)
             exec(self.eng_file.read())
             #End of stuff
             
@@ -59,21 +61,12 @@ class maiboli:
             # Then, get the stdout like a string and process it!
             
             result_string = result.getvalue()
-
+            self.txt.insert(1.0,result_string)
+            print(result_string)
         except Exception:
             print('exception aa raha hai bro')
-        #arr = eng_file.readlines()
-        """ This loop is unnecessary
-        for line in arr:
-            print("executing eng file")
-            #print(exec(self.eng_file.read()))
-            self.txt.insert(END, exec(self.eng_file.read()))
-            #self.txt.insert(END, '\n')
-            #print(line)
-            x=0"""
 
         #print(result_string+'This is the result string')
-        self.txt.insert(END,result_string)
         self.eng_file.close()
     def action(self,argi):
         """pressed button's value is inserted into the end of the text area"""
@@ -97,10 +90,12 @@ class maiboli:
         #self.optxt.grid(column=0,row=0)
         Button(master,text="Execute",width=11,height=3,fg="blue", #This is the Execute button
             bg="orange",command=lambda:self.getandreplace()).grid( 
-                row=4, column=4)
+                row=4, column=4,columnspan=2)
+                # .grid( 
+                #     row=4, column=4,columnspan=2) 
         Button(master,text="छापा",width=11,height=3,fg="blue", #This is the Execute button
             bg="orange",command=lambda:self.action('छापा')).grid( 
-                row=0, column=4)
+                row=0, column=4,columnspan=2)
         
 root = Tk() 
   
