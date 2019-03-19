@@ -47,24 +47,33 @@ class maiboli:
         #######
         self.txt.delete(1.0,END)
         self.eng_file = open('op.py','r')
+        
+        old_stdout = sys.stdout
+        result = StringIO() 
+        sys.stdout = result
+        self.eng_file.seek(0)
+        #Do stuff here
         try:
-            old_stdout = sys.stdout
-            result = StringIO() 
-            sys.stdout = result
-            #Do stuff here
-            self.eng_file.seek(0)
             exec(self.eng_file.read())
-            #End of stuff
+        except SyntaxError:
+            print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
+            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा"""
             
-            sys.stdout = old_stdout
-            
-            # Then, get the stdout like a string and process it!
-            
-            result_string = result.getvalue()
-            self.txt.insert(1.0,result_string)
-            print(result_string)
+        except NameError:
+            print('NameError')
+        # except SyntaxError.IndentationError:
+            # print('इनपुट दरम्यान जागा तपासा')
         except Exception:
-            print('exception aa raha hai bro')
+            print("undefined exception occured")
+            #End of stuff
+        sys.stdout = old_stdout
+        
+        # Then, get the stdout like a string and process it!
+        
+        result_string = result.getvalue()
+        self.txt.insert(1.0,result_string)
+        print(result_string)
+            
 
         #print(result_string+'This is the result string')
         self.eng_file.close()
