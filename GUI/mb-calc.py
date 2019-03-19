@@ -7,6 +7,7 @@ import dix
 from io import StringIO  # Python3
 import sys
 
+
 class maiboli:
     def getandreplace(self):
         
@@ -16,10 +17,10 @@ class maiboli:
         #self.newtext=self.newtext.replace('x','*') 
 
     def execute(self,inputtext):
-        eng = open('op.py','w')
+        eng = open('op.py','wb')
         #inputtext = self.inputtext
         #inputtext = str(inputtext)
-        print(inputtext)
+        #print(inputtext)
         iparr = inputtext.split('\n')
         #print(len(arr))
         print(iparr)
@@ -31,6 +32,7 @@ class maiboli:
                 y = y.replace(dix.mar[count],dix.en[count])
                 #print('reached line 30')
             y = y+'\n'
+            y=y.encode('utf-8')
             eng.write(y)
         print('line 32')
         eng.close()
@@ -46,7 +48,7 @@ class maiboli:
     def displayoutput(self):
         #######
         self.txt.delete(1.0,END)
-        self.eng_file = open('op.py','r')
+        self.eng_file = open('op.py','rb')
         
         old_stdout = sys.stdout
         result = StringIO() 
