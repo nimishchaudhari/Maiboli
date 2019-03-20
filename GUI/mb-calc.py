@@ -93,18 +93,18 @@ class maiboli:
         self.txt = Entry(master)
         #self.e.grid(row=0,column=0) 
         #self.e.focus_set() #Sets focus on the input text area 
-        self.txt = scrolledtext.ScrolledText(root,width=40,height=10)
+        self.txt = scrolledtext.ScrolledText(root,width=140,height=40)
         self.txt.grid(column=0,row=0)
         #self.optxt = scrolledtext.ScrolledText(root,width=40,height=10)
         #self.optxt.grid(column=0,row=0)
-        Button(master,text="Execute",width=11,height=3,fg="blue", #This is the Execute button
+        Button(master,text="चालवा",width=11,height=3,fg="blue", #This is the Execute button
             bg="orange",command=lambda:self.getandreplace()).grid( 
-                row=4, column=4,columnspan=2)
+                row=0, column=4,columnspan=2)
                 # .grid( 
                 #     row=4, column=4,columnspan=2) 
-        Button(master,text="छापा",width=11,height=3,fg="blue", #This is the Execute button
-            bg="orange",command=lambda:self.action('छापा')).grid( 
-                row=0, column=4,columnspan=2)
+        # Button(master,text="छापा",width=11,height=3,fg="blue", #This is the Execute button
+        #     bg="orange",command=lambda:self.action('छापा')).grid( 
+        #         row=0, column=4,columnspan=2)
         
 root = Tk() 
   
