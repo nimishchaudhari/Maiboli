@@ -18,17 +18,19 @@ class maiboli:
         print(inputtext)
         iparr = inputtext.split('\n')
         print(iparr)
-        for y in iparr:
-            for x in dix.en:
+        for y in iparr:     #Getting sentence
+            flag = True
+            for x in dix.en:    #Getting single word
                 count = dix.en.index(x) 
-                y = y.replace(dix.mar[count],dix.en[count])
+                for test_for_quotmarks in x:
+                    if test_for_quotmarks="'" or '"':
+                        flag= False
+                if flag==True:
+                    y = y.replace(dix.mar[count],dix.en[count])
             y = y+'\n'
             eng.write(y)
-        print('line 32')
         eng.close()
-        print('closed eng')
         eng = open('op.py','r')
-        print('reached line 36 opened read')
         self.arr = eng.readlines()
         print(self.arr)
         eng.close()
