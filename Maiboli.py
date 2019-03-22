@@ -53,11 +53,11 @@ class maiboli:
         except NameError:
             print('NameError')
         except SyntaxError.IndentationError:
-            # print('इनपुट दरम्यान जागा तपासा')
+            print('इनपुट दरम्यान जागा तपासा')
         except Exception:
             print("undefined exception occured")
-            #End of stuff
-        sys.stdout = old_stdout
+            #End of stuff       
+            sys.stdout = old_stdout
         
         # Then, get the stdout like a string and process it!
         
