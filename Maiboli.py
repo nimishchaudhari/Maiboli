@@ -12,19 +12,40 @@ class maiboli:
         
         self.expression = self.txt.get(1.0,END) ### Grabbing text from the scroll Text
         self.execute(self.expression)
-
     def execute(self,inputtext):
         eng = open('op.py','w')
         print(inputtext)
         iparr = inputtext.split('\n')
+        iparr.remove(iparr[len(iparr)-1]) #TO remove that last \n of the array
         print(iparr)
+        
         for y in iparr:     #Getting sentence
-            flag = True
-            for x in dix.en:    #Getting single word
+            self.convertor = True
+            self.stack = ''
+            for x in dix.en:    #Getting conversion word
                 count = dix.en.index(x) 
-                y = y.replace(dix.mar[count],dix.en[count])
-            y = y+'\n'
-            eng.write(y)
+                for letter in y:    #One letter from 
+                    if letter == '"' or letter == '"':
+                        inv_comma = letter
+                        self.convertor != self.convertor
+                        self.stack = self.stack + letter
+                        if self.stack == dix.mar[count]:
+                            y = self.stack.replace(dix.mar[count],dix.en[count])
+                            self.stack = ''
+                            y = y+'\n'
+                            eng.write(y)
+                        else:
+                            eng.write(y)
+                    else:
+                        if self.convertor == True:
+                            eng.write(y)
+                    
+                        
+
+                # if self.susp == True:    
+                #     y = y.replace(dix.mar[count],dix.en[count])
+            # y = y+'\n'
+            # eng.write(y)
         eng.close()
         eng = open('op.py','r')
         self.arr = eng.readlines()
