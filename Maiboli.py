@@ -22,11 +22,11 @@ class maiboli:
             flag = True
             for x in dix.en:    #Getting single word
                 count = dix.en.index(x) 
-                for test_for_quotmarks in x:
-                    if test_for_quotmarks="'" or '"':
-                        flag= False
-                if flag==True:
-                    y = y.replace(dix.mar[count],dix.en[count])
+                # for test_for_quotmarks in x:
+                #     if test_for_quotmarks="'" or '"':
+                #         flag= False
+                # if flag==True:
+                y = y.replace(dix.mar[count],dix.en[count])
             y = y+'\n'
             eng.write(y)
         eng.close()
