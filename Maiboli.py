@@ -105,6 +105,7 @@ class maiboli:
         Button(master,text="चालवा",width=11,height=3,fg="blue", #This is the Execute button
             bg="orange",command=lambda:self.getandreplace()).grid( 
                 row=0, column=4,columnspan=2)
+        master.bind('<Control-Return>', self.getandreplace())
          
 root = Tk() 
   
