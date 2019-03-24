@@ -1,3 +1,4 @@
+
 #Based on https://www.geeksforgeeks.org/python-simple-calculator-using-tkinter/
 #calculator app template.
 #Research more on https://stackoverflow.com/questions/2090464/python-window-activation
@@ -12,42 +13,23 @@ class maiboli:
         
         self.expression = self.txt.get(1.0,END) ### Grabbing text from the scroll Text
         self.execute(self.expression)
+
     def execute(self,inputtext):
         eng = open('op.py','w')
         print(inputtext)
         iparr = inputtext.split('\n')
-        iparr.remove(iparr[len(iparr)-1]) #TO remove that last \n of the array
         print(iparr)
-        
-        for y in iparr:     #Getting sentence
-            self.convertor = True
-            self.stack = ''
-            for x in dix.en:    #Getting conversion word
+        for y in iparr:
+            for x in dix.en:
                 count = dix.en.index(x) 
-                for letter in y:    #One letter from 
-                    if letter == '"' or letter == '"':
-                        inv_comma = letter
-                        self.convertor != self.convertor
-                        self.stack = self.stack + letter
-                        if self.stack == dix.mar[count]:
-                            y = self.stack.replace(dix.mar[count],dix.en[count])
-                            self.stack = ''
-                            y = y+'\n'
-                            eng.write(y)
-                        else:
-                            eng.write(y)
-                    else:
-                        if self.convertor == True:
-                            eng.write(y)
-                    
-                        
-
-                # if self.susp == True:    
-                #     y = y.replace(dix.mar[count],dix.en[count])
-            # y = y+'\n'
-            # eng.write(y)
+                y = y.replace(dix.mar[count],dix.en[count])
+            y = y+'\n'
+            eng.write(y)
+        print('line 32')
         eng.close()
+        print('closed eng')
         eng = open('op.py','r')
+        print('reached line 36 opened read')
         self.arr = eng.readlines()
         print(self.arr)
         eng.close()
@@ -105,7 +87,6 @@ class maiboli:
         Button(master,text="चालवा",width=11,height=3,fg="blue", #This is the Execute button
             bg="orange",command=lambda:self.getandreplace()).grid( 
                 row=0, column=4,columnspan=2)
-        master.bind('<Control-Return>', self.getandreplace())
          
 root = Tk() 
   
