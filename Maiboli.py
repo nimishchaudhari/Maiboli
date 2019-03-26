@@ -18,13 +18,55 @@ class maiboli:
         eng = open('op.py','w')
         print(inputtext)
         iparr = inputtext.split('\n')
+        iparr.pop()
         print(iparr)
-        for y in iparr:
+        for y in iparr:             #y is the line input
+            array = []              # This one's to chop the sentence into letters 
+            indexset = []           # This one's to keep the start and end index of the "quoted area"
+            for char in y:
+                array.append(char)  #Adding as object to array
+            flag = False
+            startindex = 0
+            endindex = 1
+            for i in array:         #Calling one object at a time
+                
+                print(i)
+                if i == "'" and flag == False:
+                    self.startindex = array.index(i,0)
+                    indexset.append(int(self.startindex))
+                    flag = True
+                elif i == "'" and flag == True:
+                    endindex = array.index(i,self.startindex+1)
+                    indexset.append(int(endindex))
+                    flag = False
+            scam = []               #Array to put those "quoted characters"
+            print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
+            for i in range(indexset[0],indexset[1]+1):
+                #print('scam this',array[i])
+                scam.append(array[i])
+                array[i] = ''
+                #scam.append(array.pop(i))
+                print(scam)
+            modified_array_of_string = []
+            modified_string = ''
+            for i in array:
+                modified_array_of_string.append(i)       #This is the modified string array without quotes
+            for i in modified_array_of_string:
+                modified_string = modified_string+i
+            
             for x in dix.en:
                 count = dix.en.index(x) 
-                y = y.replace(dix.mar[count],dix.en[count])
-            y = y+'\n'
-            eng.write(y)
+                #y = y.replace(dix.mar[count],dix.en[count])
+                modified_string = modified_string.replace(dix.mar[count],dix.en[count])
+            #y = y+'\n'
+            modified_array_of_string = ['']
+            for i in modified_string:
+                modified_array_of_string.append(i)
+            modified_array_of_string.insert(indexset[0],scam)
+            ready_to_exec = ''
+            for x in modified_array_of_string:
+                ready_to_exec = ''.join(x)
+            eng.write(ready_to_exec)
         print('line 32')
         eng.close()
         print('closed eng')
