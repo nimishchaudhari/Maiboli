@@ -29,7 +29,6 @@ class maiboli:
             startindex = 0
             endindex = 1
             for i in array:         #Calling one object at a time
-                
                 print(i)
                 if i == "'" and flag == False:
                     self.startindex = array.index(i,0)
@@ -40,6 +39,7 @@ class maiboli:
                     indexset.append(int(endindex))
                     flag = False
             scam = []               #Array to put those "quoted characters"
+            print(array)
             print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
             for i in range(indexset[0],indexset[1]+1):
                 #print('scam this',array[i])
@@ -56,13 +56,20 @@ class maiboli:
             
             for x in dix.en:
                 count = dix.en.index(x) 
-                #y = y.replace(dix.mar[count],dix.en[count])
+                #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
+                mar_len = len(dix.mar[count])
+                eng_len = len(dix.en[count])
+                
                 modified_string = modified_string.replace(dix.mar[count],dix.en[count])
             #y = y+'\n'
             modified_array_of_string = ['']
             for i in modified_string:
                 modified_array_of_string.append(i)
-            modified_array_of_string.insert(indexset[0],scam)
+            count = indexset[0]
+            for i in scam:
+                modified_array_of_string.insert(count,i)
+                count+=1
+            print(modified_array_of_string)
             ready_to_exec = ''
             for x in modified_array_of_string:
                 ready_to_exec = ''.join(x)
