@@ -9,6 +9,13 @@ from io import StringIO  # Python3
 import sys
 
 class maiboli:
+    def somefunction(self,indexset,array,scam):
+        for i in range(indexset[0],indexset[1]+1):
+                #print('scam this',array[i])
+                scam.append(array[i])
+                array[i] = ''
+                #scam.append(array.pop(i))
+                print(scam)
     def getandreplace(self):
         
         self.expression = self.txt.get(1.0,END) ### Grabbing text from the scroll Text
@@ -26,33 +33,35 @@ class maiboli:
             for char in y:
                 array.append(char)  #Adding as object to array
             flag = False
+            quotes = False
             startindex = 0
             endindex = 1
+            scam = []               #Array to put those "quoted characters"
             for i in array:         #Calling one object at a time
                 print(i)
                 if i == "'" and flag == False:
                     self.startindex = array.index(i,0)
                     indexset.append(int(self.startindex))
                     flag = True
+                    quotes = True
                 elif i == "'" and flag == True:
                     endindex = array.index(i,self.startindex+1)
                     indexset.append(int(endindex))
                     flag = False
-            scam = []               #Array to put those "quoted characters"
             print(array)
             print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
-            for i in range(indexset[0],indexset[1]+1):
-                #print('scam this',array[i])
-                scam.append(array[i])
-                array[i] = ''
-                #scam.append(array.pop(i))
-                print(scam)
+            if quotes == True:
+                self.somefunction(indexset,array,scam)
+            else:
+                pass
+            
             modified_array_of_string = []
             modified_string = ''
             for i in array:
                 modified_array_of_string.append(i)       #This is the modified string array without quotes
             for i in modified_array_of_string:
                 modified_string = modified_string+i
+            modified_string = modified_string + '\n'
             
 
             """
@@ -92,20 +101,24 @@ Screw this, I'm hardcoding values in the dix.py file
 
             #y = y+'\n'
             modified_array_of_string = ['']
-            for i in modified_string:
-                modified_array_of_string.append(i)
-            count = indexset[0]+1
-            modified_array_of_string.pop(0)
-            for i in scam:
-                modified_array_of_string.insert(count,i)
-                count+=1
-            #modified_array_of_string.pop(0)
-            print(modified_array_of_string)
-            ready_to_exec = ''
-            for x in modified_array_of_string:
-                ready_to_exec = ready_to_exec+x
-            print(ready_to_exec)
-            eng.write(ready_to_exec)
+            if quotes == True:
+                for i in modified_string:
+                    modified_array_of_string.append(i)
+                count = indexset[0]+1
+                modified_array_of_string.pop(0)
+                for i in scam:
+                    modified_array_of_string.insert(count,i)
+                    count+=1
+                #modified_array_of_string.pop(0)
+                print(modified_array_of_string)
+                ready_to_exec = ''
+                for x in modified_array_of_string:
+                    ready_to_exec = ready_to_exec+x
+                print(ready_to_exec)
+                eng.write(ready_to_exec)
+            else:
+                print(modified_string)
+                eng.write(modified_string)
         print('line 32')
         eng.close()
         print('closed eng')
