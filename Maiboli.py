@@ -61,28 +61,41 @@ This makes our previous setup compromise. To avoid that, I've written two cases.
 1. when Marathi word length < English word length -> 
     add ' ' spaces to fill the  difference of lengths between the two.
 2. When English word lengths < Marathi word length - Yet to think what to do
+
+
+***********************************
+
+Screw this, I'm hardcoding values in the dix.py file
             """
+            # for x in dix.en:
+            #     count = dix.en.index(x) 
+            #     #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
+            #     mar_len = len(dix.mar[count])
+            #     mar_modi = dix.mar[count]           #Fetching Marathi dictionary word
+            #     eng_len = len(dix.en[count])
+            #     eng_modi = dix.en[count]            #Fetching English dictionary word
+            #     difference = mar_len - eng_len      #Difference between the two
+            #     if difference > 0:
+            #         #modified_string.find
+            #         for diff in range(0,abs(difference)):
+            #             mar_modi = mar_modi+' '         #Leaving spaces for space to occupy longer English terms
+            #         print('This is before conversion: "',mar_modi,'"')
+            #         modified_string = modified_string.replace(mar_modi,dix.en[count])
+            #         print('this string is converted, one with spaces', modified_string)
+
             for x in dix.en:
                 count = dix.en.index(x) 
                 #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
-                mar_len = len(dix.mar[count])
-                mar_modi = dix.mar[count]           #Fetching Marathi dictionary word
-                eng_len = len(dix.en[count])
-                eng_modi = dix.en[count]            #Fetching English dictionary word
-                difference = mar_len - eng_len      #Difference between the two
-                if difference > 0:
-                    #modified_string.find
-                    for diff in range(0,abs(difference)):
-                        mar_modi = mar_modi+' '         #Leaving spaces for space to occupy longer English terms
-                    print('This is before conversion: "',mar_modi,'"')
-                    modified_string = modified_string.replace(mar_modi,dix.en[count])
-                    print('this string is converted, one with spaces', modified_string)
+                modified_string = modified_string.replace(dix.mar[count].strip(),dix.en[count]) #Conversion module
+                # mar_len = len(dix.mar[count])
+                # eng_len = len(dix.en[count])
 
             #y = y+'\n'
             modified_array_of_string = ['']
             for i in modified_string:
                 modified_array_of_string.append(i)
-            count = indexset[0]
+            count = indexset[0]+1
+            modified_array_of_string.pop(0)
             for i in scam:
                 modified_array_of_string.insert(count,i)
                 count+=1
@@ -90,7 +103,8 @@ This makes our previous setup compromise. To avoid that, I've written two cases.
             print(modified_array_of_string)
             ready_to_exec = ''
             for x in modified_array_of_string:
-                ready_to_exec = ''.join(x)
+                ready_to_exec = ready_to_exec+x
+            print(ready_to_exec)
             eng.write(ready_to_exec)
         print('line 32')
         eng.close()
