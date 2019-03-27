@@ -54,13 +54,30 @@ class maiboli:
             for i in modified_array_of_string:
                 modified_string = modified_string+i
             
+
+            """
+Problem:    sometimes marathi dictionary has less number of words and english dictionary has more number of words
+This makes our previous setup compromise. To avoid that, I've written two cases.
+1. when Marathi word length < English word length -> 
+    add ' ' spaces to fill the  difference of lengths between the two.
+2. When English word lengths < Marathi word length - Yet to think what to do
+            """
             for x in dix.en:
                 count = dix.en.index(x) 
                 #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
                 mar_len = len(dix.mar[count])
+                mar_modi = dix.mar[count]           #Fetching Marathi dictionary word
                 eng_len = len(dix.en[count])
-                
-                modified_string = modified_string.replace(dix.mar[count],dix.en[count])
+                eng_modi = dix.en[count]            #Fetching English dictionary word
+                difference = mar_len - eng_len      #Difference between the two
+                if difference > 0:
+                    #modified_string.find
+                    for diff in range(0,abs(difference)):
+                        mar_modi = mar_modi+' '         #Leaving spaces for space to occupy longer English terms
+                    print('This is before conversion: "',mar_modi,'"')
+                    modified_string = modified_string.replace(mar_modi,dix.en[count])
+                    print('this string is converted, one with spaces', modified_string)
+
             #y = y+'\n'
             modified_array_of_string = ['']
             for i in modified_string:
@@ -69,6 +86,7 @@ class maiboli:
             for i in scam:
                 modified_array_of_string.insert(count,i)
                 count+=1
+            #modified_array_of_string.pop(0)
             print(modified_array_of_string)
             ready_to_exec = ''
             for x in modified_array_of_string:
