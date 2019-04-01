@@ -15,7 +15,7 @@ class maiboli:
                 scam.append(array[i])
                 array[i] = ''
                 #scam.append(array.pop(i))
-                #print(scam)
+                # print(scam)
     def getandreplace(self):
         
         self.expression = self.txt.get(1.0,END) ### Grabbing text from the scroll Text
@@ -23,10 +23,10 @@ class maiboli:
 
     def execute(self,inputtext):
         eng = open('op.py','w')
-        print(inputtext)
+        # print(inputtext)
         iparr = inputtext.split('\n')
         iparr.pop()
-        #print(iparr)
+        # print(iparr)
         for y in iparr:             #y is the line input
             array = []              # This one's to chop the sentence into letters 
             indexset = []           # This one's to keep the start and end index of the "quoted area"
@@ -38,7 +38,7 @@ class maiboli:
             endindex = 1
             scam = []               #Array to put those "quoted characters"
             for i in array:         #Calling one object at a time
-                #print(i)
+                # print(i)
                 if i == "'" and flag == False:
                     self.startindex = array.index(i,0)
                     indexset.append(int(self.startindex))
@@ -48,8 +48,8 @@ class maiboli:
                     endindex = array.index(i,self.startindex+1)
                     indexset.append(int(endindex))
                     flag = False
-            #print(array)
-            #print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
+            # print(array)
+            # print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
             if quotes == True:
                 self.somefunction(indexset,array,scam)
             else:
@@ -119,13 +119,13 @@ Screw this, I'm hardcoding values in the dix.py file
             else:
                 #print(modified_string)
                 eng.write(modified_string)
-        #print('line 32')
+        # print('line 32')
         eng.close()
-        #print('closed eng')
+        # print('closed eng')
         eng = open('op.py','r')
-        #print('reached line 36 opened read')
+        # print('reached line 36 opened read')
         self.arr = eng.readlines()
-        #print(self.arr)
+        # print(self.arr)
         eng.close()
         self.displayoutput()
 
@@ -147,8 +147,8 @@ Screw this, I'm hardcoding values in the dix.py file
             
         except NameError:
             print('NameError')
-        # except SyntaxError.IndentationError:
-        #     print('इनपुट दरम्यान जागा तपासा')
+        except SyntaxError.IndentationError:
+            print('इनपुट दरम्यान जागा तपासा')
         except Exception:
             print("undefined exception occured")
             #End of stuff       
@@ -158,13 +158,13 @@ Screw this, I'm hardcoding values in the dix.py file
         
         result_string = result.getvalue()
         self.txt.insert(1.0,result_string)
-        print(result_string)
+        # print(result_string)
             
 
         self.eng_file.close()
     def action(self,argi):
         """pressed button's value is inserted into the end of the text area"""
-        print(argi)
+        # print(argi)
         self.txt.insert(END,argi)
     def clearall(self): 
         """when clear button is pressed,clears the text input area"""
