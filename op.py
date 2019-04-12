@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-त = 5
-प = 6
-ग = 7
+def      तारा(न): 
+    for      आ in range(0, न): 
+        for      बा in    range(0, आ+1): 
+            print("* ",end ='') 
+        print("")
+न = 5
+तारा(न) 
 
-# calculate the perimeter
-तृकॊन = (त + प + ग)
-
-print("त्रिकोण ची परिमिती ",तृकॊन,"सेमी आहे ")
-=======
-print("gnueigef")
->>>>>>> 1841e77ec031fb126f7f10985915476cadee8e10

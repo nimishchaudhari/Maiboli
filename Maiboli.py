@@ -3,43 +3,62 @@
 #and convert it into English Python code and run it in the compiler. Once the compilation is complete,
 #the output is displayed in the same text input box.
 
+
+"""
+Workflow
+
+Take input from the user by the TKinter window
+->
+Put it through the maiboli functions 
+->
+getandreplace function grabs text from the TK and pushes it to execute()
+-> 
+execute function:
+1. saves the text to a file 
+2. pullquotedstring function will pull out the content inside the ""quote marks (e.g. Print("THIS CONTENT")).
+3. converts the remaining file to english devanagari
+4. re-adds the pulledquotedstring
+5. puts it in python compiler
+6. Copies that console output to a variable and displays it using displayoutput()
+ 
+"""
+
 """Importing libraries required for the program"""
-from tkinter import *
-from tkinter import scrolledtext
-import dix
-from io import StringIO  # Python3
-import sys
+
+
+from tkinter import *               #TK
+from tkinter import scrolledtext    #TK
+import dix                  #Dictionary file where all the translations are input
+from io import StringIO     #Python3 - console output reader
+import sys                  #Sys
 # Defining class for adding functions of both the program and tkinter to work
 class maiboli:
-    def somefunction(self,indexset,array,scam):
-        for i in range(indexset[0],indexset[1]+1):
-                #print('scam this',array[i])
+    def pullquotedstring(self,indexset,array,scam): #Define Funtion
+        for i in range(indexset[0],indexset[1]+1):  
                 scam.append(array[i])
-                array[i] = ''
-                #scam.append(array.pop(i))
+                array[i] = ''       #Initializing
                 print(scam)
     def getandreplace(self):
         
         self.expression = self.txt.get(1.0,END) ### Grabbing text from the scroll Text
         self.execute(self.expression)
 
-    def execute(self,inputtext):
-        eng = open('op.py','w')
-        print(inputtext)
-        iparr = inputtext.split('\n')
-        iparr.pop()
-        print(iparr)
-        for y in iparr:             #y is the line input
-            array = []              # This one's to chop the sentence into letters 
-            indexset = []           # This one's to keep the start and end index of the "quoted area"
+    def execute(self,inputtext):        # Beginning the Execution
+        eng = open('op.py','w')         # Opening a blank file to save the input data into
+        print(inputtext)                # Printing the data input from the user in the console for reference
+        iparr = inputtext.split('\n')   # Splitting the data code paragraph into lines - iparr (Lines of code in Marathi)
+        iparr.pop()                     # Popping the last line since it's a blank spot 
+        print(iparr)                    # Printing the array of lines of code for reference.
+        for y in iparr:                 # y is the line input 
+            array = []                  # This one's to chop the sentence into letters 
+            indexset = []               # This one's to keep the start and end index of the "quoted area"   
             for char in y:
-                array.append(char)  #Adding as object to array
-            flag = False
-            quotes = False
-            startindex = 0
-            endindex = 1
-            scam = []               #Array to put those "quoted characters"
-            for i in array:         #Calling one object at a time
+                array.append(char)      # Adding as single single letter input to array
+            flag = False                # Setting flags to help figure out if the index has quotes
+            quotes = False              # Setting flags to help figure out if the index has quotes
+            endindex = 1                # Just initializing for keeping the last index of the quoted character
+            scam = []                   # Array to put those "quoted characters" in
+            for i in array:             # Calling one object at a time
                 print(i)
                 if i == "'" and flag == False:
                     self.startindex = array.index(i,0)
@@ -53,7 +72,7 @@ class maiboli:
             print(array)
             print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
             if quotes == True:
-                self.somefunction(indexset,array,scam)
+                self.pullquotedstring(indexset,array,scam)
             else:
                 pass
             
@@ -64,19 +83,16 @@ class maiboli:
             for i in modified_array_of_string:
                 modified_string = modified_string+i
             modified_string = modified_string + '\n'
-            
+            """
+            Problem: sometimes marathi dictionary has less number of words and english dictionary has more number of words
+            This makes our previous setup compromise. To avoid that, I've written two cases.
+            1. when Marathi word length < English word length -> 
+            add ' ' spaces to fill the  difference of lengths between the two.
+            2. When English word lengths < Marathi word length - Yet to think what to do
 
-"""
-Problem:    sometimes marathi dictionary has less number of words and english dictionary has more number of words
-This makes our previous setup compromise. To avoid that, I've written two cases.
-1. when Marathi word length < English word length -> 
-    add ' ' spaces to fill the  difference of lengths between the two.
-2. When English word lengths < Marathi word length - Yet to think what to do
-
-***********************************
-
-Screw this, I'm hardcoding values in the dix.py file
-"""
+            Solution:
+            Screw this, I'm hardcoding in the dix.py file with required spacings.
+            """
             for x in dix.en:
                 count = dix.en.index(x) 
                 modified_string = modified_string.replace(dix.mar[count].strip(),dix.en[count]) #Conversion module
@@ -139,6 +155,8 @@ Screw this, I'm hardcoding values in the dix.py file
             
 
         self.eng_file.close()
+    
+    #These are TKinter window functions
     def action(self,argi):
         """pressed button's value is inserted into the end of the text area"""
         print(argi)
