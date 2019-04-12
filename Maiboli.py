@@ -1,44 +1,71 @@
 
-#Based on https://www.geeksforgeeks.org/python-simple-calculator-using-tkinter/
-#calculator app template.
-#Research more on https://stackoverflow.com/questions/2090464/python-window-activation
-from tkinter import *
-from tkinter import scrolledtext
-import dix
-from io import StringIO  # Python3
-import sys
+#Based on a tkinter module, application will take input text in devanagari code
+#and convert it into English Python code and run it in the compiler. Once the compilation is complete,
+#the output is displayed in the same text input box.
 
+
+"""
+Workflow
+
+Take input from the user by the TKinter window
+->
+Put it through the maiboli functions 
+->
+getandreplace function grabs text from the TK and pushes it to execute()
+-> 
+execute function:
+1. saves the text to a file 
+2. pullquotedstring function will pull out the content inside the ""quote marks (e.g. Print("THIS CONTENT")).
+3. converts the remaining file to english devanagari
+4. re-adds the pulledquotedstring
+5. puts it in python compiler
+6. Copies that console output to a variable and displays it using displayoutput()
+ 
+"""
+
+"""Importing libraries required for the program"""
+
+
+from tkinter import *               #TK
+from tkinter import scrolledtext    #TK
+import dix                  #Dictionary file where all the translations are input
+from io import StringIO     #Python3 - console output reader
+import sys                  #Sys
+# Defining class for adding functions of both the program and tkinter to work
 class maiboli:
-    def somefunction(self,indexset,array,scam):
-        for i in range(indexset[0],indexset[1]+1):
-                #print('scam this',array[i])
+    def pullquotedstring(self,indexset,array,scam): #Define Funtion
+        for i in range(indexset[0],indexset[1]+1):  
                 scam.append(array[i])
-                array[i] = ''
-                #scam.append(array.pop(i))
+                array[i] = ''       #Initializing
                 print(scam)
     def getandreplace(self):
         
         self.expression = self.txt.get(1.0,END) ### Grabbing text from the scroll Text
         self.execute(self.expression)
 
-    def execute(self,inputtext):
-        eng = open('op.py','w')
-        print(inputtext)
-        iparr = inputtext.split('\n')
-        iparr.pop()
-        print(iparr)
-        for y in iparr:             #y is the line input
-            array = []              # This one's to chop the sentence into letters 
-            indexset = []           # This one's to keep the start and end index of the "quoted area"
+    def execute(self,inputtext):        # Beginning the Execution
+        eng = open('op.py','w')         # Opening a blank file to save the input data into
+        print(inputtext)                # Printing the data input from the user in the console for reference
+        iparr = inputtext.split('\n')   # Splitting the data code paragraph into lines - iparr (Lines of code in Marathi)
+        iparr.pop()                     # Popping the last line since it's a blank spot 
+        print(iparr)                    # Printing the array of lines of code for reference.
+        for y in iparr:                 # y is the line input 
+            array = []                  # This one's to chop the sentence into letters 
+            indexset = []               # This one's to keep the start and end index of the "quoted area"   
             for char in y:
-                array.append(char)  #Adding as object to array
-            flag = False
-            quotes = False
-            startindex = 0
-            endindex = 1
-            scam = []               #Array to put those "quoted characters"
-            for i in array:         #Calling one object at a time
+                array.append(char)      # Adding as single single letter input to array
+            flag = False                # Setting flags to help figure out if the index has quotes
+            quotes = False              # Setting flags to help figure out if the index has quotes
+            endindex = 1                # Just initializing for keeping the last index of the quoted character
+            scam = []                   # Array to put those "quoted characters" in
+            for i in array:             # Calling one letter at a time
                 print(i)
+                """
+                Code working:
+                The loops divide the sentence into words and then into characters. 
+                When one character is spotted to be a double quote, the flag for 'quotes' is set to True, and the
+                array index is noted. The loop proceeds and notes the index of the closing 'quotes'. 
+                """
                 if i == "'" and flag == False:
                     self.startindex = array.index(i,0)
                     indexset.append(int(self.startindex))
@@ -49,57 +76,36 @@ class maiboli:
                     indexset.append(int(endindex))
                     flag = False
             print(array)
-            print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
-            if quotes == True:
-                self.somefunction(indexset,array,scam)
+            print('indexset variable is ',indexset) # Printing the start and end index of the quoted area
+            if quotes == True:                      #Only runs pullquotedstring when there's a quote mark selected.
+                self.pullquotedstring(indexset,array,scam)  #Calling the pull quoted string function to pull out the quotes and make it ready to process.
             else:
                 pass
-            
-            modified_array_of_string = []
+            modified_array_of_string = []           # Initialized two variables, to keep the readded quote modified sentence in both string and array format
             modified_string = ''
             for i in array:
-                modified_array_of_string.append(i)       #This is the modified string array without quotes
+                modified_array_of_string.append(i)       #This is the modified string array without quoted stuff
             for i in modified_array_of_string:
                 modified_string = modified_string+i
             modified_string = modified_string + '\n'
             
-
+            #The Content stays without the quoted stuff, before running the conversion module.
             """
-Problem:    sometimes marathi dictionary has less number of words and english dictionary has more number of words
-This makes our previous setup compromise. To avoid that, I've written two cases.
-1. when Marathi word length < English word length -> 
-    add ' ' spaces to fill the  difference of lengths between the two.
-2. When English word lengths < Marathi word length - Yet to think what to do
+            Problem: sometimes marathi dictionary has less number of words and english dictionary has more number of words
+            This makes our previous setup compromise. To avoid that, I've written two cases.
+            1. when Marathi word length < English word length -> 
+            add ' ' spaces to fill the  difference of lengths between the two.
+            2. When English word lengths < Marathi word length - Yet to think what to do
 
-
-***********************************
-
-Screw this, I'm hardcoding values in the dix.py file
+            Solution:
+            Screw this, I'm hardcoding in the dix.py file with required spacings.
             """
-            # for x in dix.en:
-            #     count = dix.en.index(x) 
-            #     #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
-            #     mar_len = len(dix.mar[count])
-            #     mar_modi = dix.mar[count]           #Fetching Marathi dictionary word
-            #     eng_len = len(dix.en[count])
-            #     eng_modi = dix.en[count]            #Fetching English dictionary word
-            #     difference = mar_len - eng_len      #Difference between the two
-            #     if difference > 0:
-            #         #modified_string.find
-            #         for diff in range(0,abs(difference)):
-            #             mar_modi = mar_modi+' '         #Leaving spaces for space to occupy longer English terms
-            #         print('This is before conversion: "',mar_modi,'"')
-            #         modified_string = modified_string.replace(mar_modi,dix.en[count])
-            #         print('this string is converted, one with spaces', modified_string)
-
             for x in dix.en:
                 count = dix.en.index(x) 
-                #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
-                modified_string = modified_string.replace(dix.mar[count].strip(),dix.en[count]) #Conversion module
-                # mar_len = len(dix.mar[count])
-                # eng_len = len(dix.en[count])
+                modified_string = modified_string.replace(dix.mar[count].strip(),dix.en[count]) #Conversion module to convert marathi stuff into python code.
 
-            #y = y+'\n'
+
+            """ This code is to get the quoted stuff back inside the output before putting it in the interpreter"""
             modified_array_of_string = ['']
             if quotes == True:
                 for i in modified_string:
@@ -109,7 +115,6 @@ Screw this, I'm hardcoding values in the dix.py file
                 for i in scam:
                     modified_array_of_string.insert(count,i)
                     count+=1
-                #modified_array_of_string.pop(0)
                 print(modified_array_of_string)
                 ready_to_exec = ''
                 for x in modified_array_of_string:
@@ -119,18 +124,17 @@ Screw this, I'm hardcoding values in the dix.py file
             else:
                 print(modified_string)
                 eng.write(modified_string)
-        print('line 32')
+        
         eng.close()
-        print('closed eng')
+        
         eng = open('op.py','r')
-        print('reached line 36 opened read')
+        
         self.arr = eng.readlines()
         print(self.arr)
         eng.close()
         self.displayoutput()
 
     def displayoutput(self):
-        #######
         self.txt.delete(1.0,END)
         self.eng_file = open('op.py','r')
         
@@ -138,23 +142,21 @@ Screw this, I'm hardcoding values in the dix.py file
         result = StringIO() 
         sys.stdout = result
         self.eng_file.seek(0)
-        #Do stuff here
+        #Do stuff here that goes in the result variable as string text
         try:
             exec(self.eng_file.read())
         except SyntaxError:
             print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
-            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा"""
+            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
             
         except NameError:
             print('NameError')
-        except SyntaxError.IndentationError:
-            print('इनपुट दरम्यान जागा तपासा')
+        # except SyntaxError.IndentationError:
+        #     print('इनपुट दरम्यान जागा तपासा')
         except Exception:
-            print("undefined exception occured")
-            #End of stuff       
+            print("अवैध्य इनपुट")
+            #End of stuff that gets copied in that variable.
             sys.stdout = old_stdout
-        
-        # Then, get the stdout like a string and process it!
         
         result_string = result.getvalue()
         self.txt.insert(1.0,result_string)
@@ -162,6 +164,8 @@ Screw this, I'm hardcoding values in the dix.py file
             
 
         self.eng_file.close()
+    
+    #These are TKinter window functions
     def action(self,argi):
         """pressed button's value is inserted into the end of the text area"""
         print(argi)
