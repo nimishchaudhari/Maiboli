@@ -127,14 +127,15 @@ class maiboli:
         
         eng.close()
         
+        # Stops modifying the op.txt file and opens it as read only once the execution is done and the output it stored in op.py
         eng = open('op.py','r')
         
-        self.arr = eng.readlines()
+        self.arr = eng.readlines()      #Displays the content as output
         print(self.arr)
         eng.close()
         self.displayoutput()
-
-    def displayoutput(self):
+    """ This module is to print output as per the user's problems. """
+    def displayoutput(self):            
         self.txt.delete(1.0,END)
         self.eng_file = open('op.py','r')
         
