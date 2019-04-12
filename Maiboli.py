@@ -1,13 +1,15 @@
 
-#Based on https://www.geeksforgeeks.org/python-simple-calculator-using-tkinter/
-#calculator app template.
-#Research more on https://stackoverflow.com/questions/2090464/python-window-activation
+#Based on a tkinter module, application will take input text in devanagari code
+#and convert it into English Python code and run it in the compiler. Once the compilation is complete,
+#the output is displayed in the same text input box.
+
+"""Importing libraries required for the program"""
 from tkinter import *
 from tkinter import scrolledtext
 import dix
 from io import StringIO  # Python3
 import sys
-
+# Defining class for adding functions of both the program and tkinter to work
 class maiboli:
     def somefunction(self,indexset,array,scam):
         for i in range(indexset[0],indexset[1]+1):
@@ -64,42 +66,21 @@ class maiboli:
             modified_string = modified_string + '\n'
             
 
-            """
+"""
 Problem:    sometimes marathi dictionary has less number of words and english dictionary has more number of words
 This makes our previous setup compromise. To avoid that, I've written two cases.
 1. when Marathi word length < English word length -> 
     add ' ' spaces to fill the  difference of lengths between the two.
 2. When English word lengths < Marathi word length - Yet to think what to do
 
-
 ***********************************
 
 Screw this, I'm hardcoding values in the dix.py file
-            """
-            # for x in dix.en:
-            #     count = dix.en.index(x) 
-            #     #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
-            #     mar_len = len(dix.mar[count])
-            #     mar_modi = dix.mar[count]           #Fetching Marathi dictionary word
-            #     eng_len = len(dix.en[count])
-            #     eng_modi = dix.en[count]            #Fetching English dictionary word
-            #     difference = mar_len - eng_len      #Difference between the two
-            #     if difference > 0:
-            #         #modified_string.find
-            #         for diff in range(0,abs(difference)):
-            #             mar_modi = mar_modi+' '         #Leaving spaces for space to occupy longer English terms
-            #         print('This is before conversion: "',mar_modi,'"')
-            #         modified_string = modified_string.replace(mar_modi,dix.en[count])
-            #         print('this string is converted, one with spaces', modified_string)
-
+"""
             for x in dix.en:
                 count = dix.en.index(x) 
-                #y = y.replace(dix.mar[count],dix.en[count]) #Conversion module
                 modified_string = modified_string.replace(dix.mar[count].strip(),dix.en[count]) #Conversion module
-                # mar_len = len(dix.mar[count])
-                # eng_len = len(dix.en[count])
 
-            #y = y+'\n'
             modified_array_of_string = ['']
             if quotes == True:
                 for i in modified_string:
@@ -109,7 +90,6 @@ Screw this, I'm hardcoding values in the dix.py file
                 for i in scam:
                     modified_array_of_string.insert(count,i)
                     count+=1
-                #modified_array_of_string.pop(0)
                 print(modified_array_of_string)
                 ready_to_exec = ''
                 for x in modified_array_of_string:
@@ -130,7 +110,6 @@ Screw this, I'm hardcoding values in the dix.py file
         self.displayoutput()
 
     def displayoutput(self):
-        #######
         self.txt.delete(1.0,END)
         self.eng_file = open('op.py','r')
         
@@ -138,23 +117,21 @@ Screw this, I'm hardcoding values in the dix.py file
         result = StringIO() 
         sys.stdout = result
         self.eng_file.seek(0)
-        #Do stuff here
+        #Do stuff here that goes in the result variable as string text
         try:
             exec(self.eng_file.read())
         except SyntaxError:
             print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
-            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा"""
+            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
             
         except NameError:
             print('NameError')
-        except SyntaxError.IndentationError:
-            print('इनपुट दरम्यान जागा तपासा')
+        # except SyntaxError.IndentationError:
+        #     print('इनपुट दरम्यान जागा तपासा')
         except Exception:
-            print("undefined exception occured")
-            #End of stuff       
+            print("अवैध्य इनपुट")
+            #End of stuff that gets copied in that variable.
             sys.stdout = old_stdout
-        
-        # Then, get the stdout like a string and process it!
         
         result_string = result.getvalue()
         self.txt.insert(1.0,result_string)
