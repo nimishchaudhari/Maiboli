@@ -58,8 +58,14 @@ class maiboli:
             quotes = False              # Setting flags to help figure out if the index has quotes
             endindex = 1                # Just initializing for keeping the last index of the quoted character
             scam = []                   # Array to put those "quoted characters" in
-            for i in array:             # Calling one object at a time
+            for i in array:             # Calling one letter at a time
                 print(i)
+                """
+                Code working:
+                The loops divide the sentence into words and then into characters. 
+                When one character is spotted to be a double quote, the flag for 'quotes' is set to True, and the
+                array index is noted. The loop proceeds and notes the index of the closing 'quotes'. 
+                """
                 if i == "'" and flag == False:
                     self.startindex = array.index(i,0)
                     indexset.append(int(self.startindex))
@@ -70,19 +76,20 @@ class maiboli:
                     indexset.append(int(endindex))
                     flag = False
             print(array)
-            print('indexset variable is ',indexset) #printing the start and end indedx of the quoted area
-            if quotes == True:
-                self.pullquotedstring(indexset,array,scam)
+            print('indexset variable is ',indexset) # Printing the start and end index of the quoted area
+            if quotes == True:                      #Only runs pullquotedstring when there's a quote mark selected.
+                self.pullquotedstring(indexset,array,scam)  #Calling the pull quoted string function to pull out the quotes and make it ready to process.
             else:
                 pass
-            
-            modified_array_of_string = []
+            modified_array_of_string = []           # Initialized two variables, to keep the readded quote modified sentence in both string and array format
             modified_string = ''
             for i in array:
-                modified_array_of_string.append(i)       #This is the modified string array without quotes
+                modified_array_of_string.append(i)       #This is the modified string array without quoted stuff
             for i in modified_array_of_string:
                 modified_string = modified_string+i
             modified_string = modified_string + '\n'
+            
+            #The Content stays without the quoted stuff, before running the conversion module.
             """
             Problem: sometimes marathi dictionary has less number of words and english dictionary has more number of words
             This makes our previous setup compromise. To avoid that, I've written two cases.
@@ -95,8 +102,10 @@ class maiboli:
             """
             for x in dix.en:
                 count = dix.en.index(x) 
-                modified_string = modified_string.replace(dix.mar[count].strip(),dix.en[count]) #Conversion module
+                modified_string = modified_string.replace(dix.mar[count].strip(),dix.en[count]) #Conversion module to convert marathi stuff into python code.
 
+
+            """ This code is to get the quoted stuff back inside the output before putting it in the interpreter"""
             modified_array_of_string = ['']
             if quotes == True:
                 for i in modified_string:
@@ -115,11 +124,11 @@ class maiboli:
             else:
                 print(modified_string)
                 eng.write(modified_string)
-        print('line 32')
+        
         eng.close()
-        print('closed eng')
+        
         eng = open('op.py','r')
-        print('reached line 36 opened read')
+        
         self.arr = eng.readlines()
         print(self.arr)
         eng.close()
