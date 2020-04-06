@@ -1,8 +1,8 @@
-def      तारा(न): 
-    for      आ in range(0, न): 
-        for      बा in    range(0, आ+1): 
-            print("* ",end ='') 
+define star(x):
+    for i in range(0,o):
+        for j in range(0,i+1):
+            print("*", format=)''
         print("")
-न = 5
-तारा(न) 
+x = 5
+print(x)
 

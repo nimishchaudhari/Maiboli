@@ -29,6 +29,7 @@ execute function:
 from tkinter import *               #TK
 from tkinter import scrolledtext    #TK
 import dix                  #Dictionary file where all the translations are input
+import exp                  #Exception handling Dictionry, to get exceptions
 from io import StringIO     #Python3 - console output reader
 import sys                  #Sys
 # Defining class for adding functions of both the program and tkinter to work
@@ -147,7 +148,8 @@ class maiboli:
         try:
             exec(self.eng_file.read())
         except SyntaxError:
-            print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
+            #print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
+            print(exp.exc_mar[0])
             """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
             
         except NameError:
@@ -155,7 +157,8 @@ class maiboli:
         # except SyntaxError.IndentationError:
         #     print('इनपुट दरम्यान जागा तपासा')
         except Exception:
-            print("अवैध्य इनपुट")
+            #print("अवैध्य इनपुट")
+            print(exp.exc_mar[1])
             #End of stuff that gets copied in that variable.
             sys.stdout = old_stdout
         
