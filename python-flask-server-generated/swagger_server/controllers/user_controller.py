@@ -36,14 +36,13 @@ def create_user(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = User.from_dict(connexion.request.get_json())  # noqa: E501
-    #db.child("userlist").set(str(body),token)
-    #db.child("userlist").child(body.id).set("{'id':'"+body.id+"'}",token)
-    #db.child("userlist").child(body.id).set(str(body),token)
-    #db.child("userlist").child(body.id).set('pass:'+body._pass,token)
-    
     #Trying with update(data)
-    db.child("userlist").child(body.id).child("id").set(str(body.id),token)
-    db.child("userlist").child(body.id).child("pass").set(str(body._pass),token)
+    if(db.child("userlist").child(body.id).get().val()!= None):
+        #skip
+        return str("Conflicts")
+    else:
+        db.child("userlist").child(body.id).child("id").set(str(body.id),token)
+        db.child("userlist").child(body.id).child("pass").set(str(body._pass),token)
     #if(user.key())
     return str(body)
 
