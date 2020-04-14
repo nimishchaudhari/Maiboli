@@ -36,7 +36,7 @@ def create_user(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = User.from_dict(connexion.request.get_json())  # noqa: E501
-    db.child("userlist").push(body.id,token)
+    db.child("userlist").push(str(body),token)
     #db.child("user").child(body.id).set(body.id)
     #db.child("user").child(body.id).set(body._pass)
     #db.child("user").child(body.id).set(body.)
