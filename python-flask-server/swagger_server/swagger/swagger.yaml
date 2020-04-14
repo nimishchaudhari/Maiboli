@@ -19,7 +19,7 @@ paths:
       - "application/json"
       parameters:
       - in: "body"
-        name: "body"
+        name: "id/pass"
         description: "To create a new user"
         required: true
         schema:
@@ -115,8 +115,7 @@ definitions:
         type: "string"
       Password:
         type: "string"
-    xml:
-      name: "User"
+    
   UserModi:
     type: "object"
     required:
@@ -133,5 +132,3 @@ definitions:
         type: "integer"
       Modification:
         type: "string"
-    xml:
-      name: "User"
