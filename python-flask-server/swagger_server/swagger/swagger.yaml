@@ -30,7 +30,22 @@ paths:
         "409":
           description: "User already exists"
       x-swagger-router-controller: "swagger_server.controllers.user_controller"
-  /User/{UserName}:
+    get:
+      tags:
+      - "User"
+      summary: "Get Users"
+      description: "Get all Users from the DB "
+      operationId: "get_all_users"
+      produces:
+      #- "application/xml"
+      - "application/json"
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "Not found"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /User/{Username}:
     put:
       tags:
       - "UserModi"
@@ -41,7 +56,7 @@ paths:
       - "application/xml"
       - "application/json"
       parameters:
-      - name: "UserName"
+      - name: "Username"
         in: "path"
         description: "Enter username "
         required: true
@@ -71,7 +86,7 @@ paths:
       - "application/xml"
       - "application/json"
       parameters:
-      - name: "UserName"
+      - name: "Username"
         in: "path"
         description: "The username of the user that needs to be deleted"
         required: true
@@ -88,37 +103,15 @@ paths:
         "404":
           description: "User not found"
       x-swagger-router-controller: "swagger_server.controllers.user_controller"
-  /Users:
-    get:
-      tags:
-      - "User"
-      summary: "Get Users"
-      description: "Get all Users from the DB "
-      operationId: "get_all_users"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "To create a new user"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
-      responses:
-        "200":
-          description: "OK"
-        "404":
-          description: "No users found"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+    
 definitions:
   User:
     type: "object"
     required:
-    - "Password"
-    - "UserName"
+      - "Username"
+      - "Password"
     properties:
-      UserName:
+      Username:
         type: "string"
       Password:
         type: "string"
@@ -129,10 +122,10 @@ definitions:
     required:
     - "Modification"
     - "Option"
+    - "Username"
     - "Password"
-    - "UserName"
     properties:
-      UserName:
+      Username:
         type: "string"
       Password:
         type: "string"
