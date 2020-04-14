@@ -15,7 +15,7 @@ class TestUserController(BaseTestCase):
     def test_create_user(self):
         """Test case for create_user
 
-        Create User
+        Creates a customer.
         """
         body = User()
         response = self.client.open(
@@ -31,12 +31,9 @@ class TestUserController(BaseTestCase):
 
         Delete user
         """
-        body = User()
         response = self.client.open(
-            '/User/{UserName}'.format(UserName='UserName_example'),
-            method='DELETE',
-            data=json.dumps(body),
-            content_type='application/json')
+            '/User/{id}'.format(id='id_example'),
+            method='DELETE')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -45,10 +42,21 @@ class TestUserController(BaseTestCase):
 
         Get Users
         """
+        response = self.client.open(
+            '/User',
+            method='GET')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_modify_user(self):
+        """Test case for modify_user
+
+        Modify user
+        """
         body = User()
         response = self.client.open(
-            '/Users',
-            method='GET',
+            '/User/{id}'.format(id='id_example'),
+            method='PUT',
             data=json.dumps(body),
             content_type='application/json')
         self.assert200(response,

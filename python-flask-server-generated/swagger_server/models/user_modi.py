@@ -14,35 +14,33 @@ class UserModi(Model):
 
     Do not edit the class manually.
     """
-
-    def __init__(self, user_name: str=None, password: str=None, option: int=None, modification: str=None):  # noqa: E501
+    def __init__(self, id: str=None, _pass: str=None, option: int=None, modification: str=None):  # noqa: E501
         """UserModi - a model defined in Swagger
 
-        :param user_name: The user_name of this UserModi.  # noqa: E501
-        :type user_name: str
-        :param password: The password of this UserModi.  # noqa: E501
-        :type password: str
+        :param id: The id of this UserModi.  # noqa: E501
+        :type id: str
+        :param _pass: The _pass of this UserModi.  # noqa: E501
+        :type _pass: str
         :param option: The option of this UserModi.  # noqa: E501
         :type option: int
         :param modification: The modification of this UserModi.  # noqa: E501
         :type modification: str
         """
         self.swagger_types = {
-            'user_name': str,
-            'password': str,
+            'id': str,
+            '_pass': str,
             'option': int,
             'modification': str
         }
 
         self.attribute_map = {
-            'user_name': 'UserName',
-            'password': 'Password',
+            'id': 'id',
+            '_pass': 'pass',
             'option': 'Option',
             'modification': 'Modification'
         }
-
-        self._user_name = user_name
-        self._password = password
+        self._id = id
+        self.__pass = _pass
         self._option = option
         self._modification = modification
 
@@ -58,50 +56,50 @@ class UserModi(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def user_name(self) -> str:
-        """Gets the user_name of this UserModi.
+    def id(self) -> str:
+        """Gets the id of this UserModi.
 
 
-        :return: The user_name of this UserModi.
+        :return: The id of this UserModi.
         :rtype: str
         """
-        return self._user_name
+        return self._id
 
-    @user_name.setter
-    def user_name(self, user_name: str):
-        """Sets the user_name of this UserModi.
+    @id.setter
+    def id(self, id: str):
+        """Sets the id of this UserModi.
 
 
-        :param user_name: The user_name of this UserModi.
-        :type user_name: str
+        :param id: The id of this UserModi.
+        :type id: str
         """
-        if user_name is None:
-            raise ValueError("Invalid value for `user_name`, must not be `None`")  # noqa: E501
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
-        self._user_name = user_name
+        self._id = id
 
     @property
-    def password(self) -> str:
-        """Gets the password of this UserModi.
+    def _pass(self) -> str:
+        """Gets the _pass of this UserModi.
 
 
-        :return: The password of this UserModi.
+        :return: The _pass of this UserModi.
         :rtype: str
         """
-        return self._password
+        return self.__pass
 
-    @password.setter
-    def password(self, password: str):
-        """Sets the password of this UserModi.
+    @_pass.setter
+    def _pass(self, _pass: str):
+        """Sets the _pass of this UserModi.
 
 
-        :param password: The password of this UserModi.
-        :type password: str
+        :param _pass: The _pass of this UserModi.
+        :type _pass: str
         """
-        if password is None:
-            raise ValueError("Invalid value for `password`, must not be `None`")  # noqa: E501
+        if _pass is None:
+            raise ValueError("Invalid value for `_pass`, must not be `None`")  # noqa: E501
 
-        self._password = password
+        self.__pass = _pass
 
     @property
     def option(self) -> int:
