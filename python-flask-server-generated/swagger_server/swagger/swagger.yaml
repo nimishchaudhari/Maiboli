@@ -61,7 +61,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UserModi'
         required: true
       responses:
         "200":
@@ -99,24 +99,24 @@ components:
     User:
       required:
       - id
-      - pass
+      - passwd
       type: object
       properties:
         id:
           type: string
-        pass:
+        passwd:
           type: string
     UserModi:
       required:
       - Modification
       - Option
       - id
-      - pass
+      - passwd
       type: object
       properties:
         id:
           type: string
-        pass:
+        passwd:
           type: string
         Option:
           type: integer

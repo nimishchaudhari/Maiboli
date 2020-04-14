@@ -57,7 +57,9 @@ def delete_user(id):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    db.child("userlist").remove()
+    return "All ok"
+    #return db.child("userlist").get().val()
 
 
 def get_all_users():  # noqa: E501
@@ -68,10 +70,12 @@ def get_all_users():  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    users = db.child("userlist").get()
+    print(users.val())
+    return users.val()
+    #return 'do some magic!'
 
-
-def modify_user(body, id):  # noqa: E501
+def modify_user(id,body):  # noqa: E501
     """Modify user
 
     To modify a a username/Password  # noqa: E501
@@ -85,4 +89,21 @@ def modify_user(body, id):  # noqa: E501
     """
     if connexion.request.is_json:
         body = User.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+
+    if(db.child("userlist").child(id).get().val()!= None):
+        #do stuff
+        if(body.Option == 0):
+            #Modify username
+            db.child("userlist").child(body.id).update("{ 'id' : '"+body.Modification+"' }",token)
+            db.child("userlist").update("{'userlist' : '"+body.Modification+"'}")
+            #db.child("userlist").update("{'id':"+body.Modification+"}",token)
+            return(db.child("userlist").child(body.Modification).get().val())
+        elif(body.Option == 1):
+            #Modify pass
+            pass
+        else:
+            #Error
+            pass
+    else:
+        return 404
+    #return 'do some magic!'
