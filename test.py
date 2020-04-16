@@ -1,1 +1,1 @@
-print  'Τύπωσε छापा'                                                  ()
+print('Τύπωσε Τύπωσε छापा') print('print print छापा')
