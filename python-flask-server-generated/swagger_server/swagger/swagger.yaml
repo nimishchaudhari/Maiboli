@@ -122,4 +122,3 @@ components:
           type: integer
         Modification:
           type: string
-
