@@ -9,7 +9,7 @@ class enligne:
         for i in range(indexset[0],indexset[1]+1):  
                 scam.append(array[i])
                 array[i] = ''       #Initializing
-                print(scam)
+                #print(scam)
     def trim(self,arr):
         op_arr=[]
         for i in arr:
@@ -61,8 +61,8 @@ class enligne:
             for i in modified_array_of_string:
                 modified_string = modified_string+i
             modified_string = modified_string + '\n'
-            print("Modified string 1")
-            print(modified_string)
+            # print("Modified string 1")
+            # print(modified_string)
             
             #The Content stays without the quoted stuff, before running the conversion module.
             """
@@ -80,14 +80,15 @@ class enligne:
             for count in range(0,len(dix1)): #Count is the array index of these dixs
                 #count = dix1.index(x)
                 #if(dix2[count])
-                print(dix2[count].strip(),modified_string)
+                #
+                # print(dix2[count].strip(),modified_string)
                 if(dix2[count].strip() in modified_string):
                     length_of_func.append(dix1[count].strip())
                     modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.                                                #print(count)
                                                                     #print(dix2[count],dix1[count])
                 #modified_string = modified_string.replace(dix2[count],dix1[count]) #Conversion module to convert marathi stuff into python code.
-            print("modified string 2")
-            print(modified_string)
+            #print("modified string 2")
+            #print(modified_string)
                 #modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
             #Backup
             # for x in dix1:
@@ -107,8 +108,8 @@ class enligne:
                     modified_array_of_string.append(i)
                 #count = indexset[0]
                 count = len(length_of_func[0])+2
-                print("TESTTYYGUZYGUYRZEVYTEZYRTFZVTY")
-                print(count)
+                #print("TESTTYYGUZYGUYRZEVYTEZYRTFZVTY")
+                #print(count)
                 """
                 #THIS COUNT PARAMETER IS A BITCH
                 Count variable is storing the index of the place where the quotation marks started / ended.
@@ -147,7 +148,7 @@ class enligne:
     def displayoutput(self):            
         self.eng_file = open('test.py','r')
         #print('reads')
-        print(self.eng_file.readlines())
+        #print(self.eng_file.readlines())
         self.eng_file.seek(0)
         old_stdout = sys.stdout
         result = StringIO() 
@@ -179,8 +180,13 @@ class enligne:
 
         
 obj = enligne() 
-#print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
 # ignore print(obj.execute("tẹjade('tẹjade Τύπωσε छापा')",dix.en_final,dix.yrb_final))
 
-#print(obj.execute("छापा('छापा')",dix.en_final,dix.mar_final))
+print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
+print(obj.execute("छापा('छापा')",dix.en_final,dix.mar_final))
 print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
+print(obj.execute("tẹjade('uighzuihiez tẹjade')",dix.en_final,dix.yrb_final))
+print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
+
+
+

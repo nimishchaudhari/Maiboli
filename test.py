@@ -1,1 +1,1 @@
-print('छापें fuyazguyfaz')
+print('طباعة igueruygue')
