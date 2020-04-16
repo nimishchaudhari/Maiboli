@@ -5,6 +5,17 @@ import exp
 from io import StringIO     #Python3 - console output reader
 
 class enligne:
+    def pullquotedstring(self,indexset,array,scam): #Define Funtion
+        for i in range(indexset[0],indexset[1]+1):  
+                scam.append(array[i])
+                array[i] = ''       #Initializing
+                print(scam)
+    def trim(self,arr):
+        op_arr=[]
+        for i in arr:
+            i.strip()
+            op_arr.append(i)
+        return op_arr
     def execute(self,inputtext,dix1,dix2):        # Dix1: English Version, Dix2: Target language
         eng = open('test.py','w')         # Opening a blank file to save the input data into
         #print(inputtext)                # Printing the data input from the user in the console for reference
@@ -39,11 +50,11 @@ class enligne:
                     flag = False
             #print(array)
             #print('indexset variable is ',indexset) # Printing the start and end index of the quoted area
-            #if quotes == True:                      #Only runs pullquotedstring when there's a quote mark selected.
-                #self.pullquotedstring(indexset,array,scam)  #Calling the pull quoted string function to pull out the quotes and make it ready to process.
-            ##else:
-            #    pass
-            modified_array_of_string = []           # Initialized two variables, to keep the readded quote modified sentence in both string and array format
+            if quotes == True:                      #Only runs pullquotedstring when there's a quote mark selected.
+                self.pullquotedstring(indexset,array,scam)  #Calling the pull quoted string function to pull out the quotes and make it ready to process.
+            else:
+                pass
+            modified_array_of_string = []           # Initialized two variables, to keep the read quote modified sentence in both string and array format
             modified_string = ''
             for i in array:
                 modified_array_of_string.append(i)       #This is the modified string array without quoted stuff
@@ -65,28 +76,33 @@ class enligne:
             for x in dix1:
                 count = dix1.index(x) 
                 modified_string = modified_string.replace(dix2[count].strip(),dix1[count]) #Conversion module to convert marathi stuff into python code.
-
+            
             """ This code is to get the quoted stuff back inside the output before putting it in the interpreter"""
             modified_array_of_string = ['']
             if quotes == True:
                 for i in modified_string:
                     modified_array_of_string.append(i)
                 count = indexset[0]+1
-                modified_array_of_string.pop(0)
+                """
+
+                PROBLEM ALERT ICI
+
+
+                """
+                #print("modified array" +str(modified_string)+"grnegnibgn"+str(modified_array_of_string))
+                #modified_array_of_string.pop(0)
                 for i in scam:
                     modified_array_of_string.insert(count,i)
                     count+=1
-                #print(modified_array_of_string)
+                #print("modified array of string" +str(modified_array_of_string))
                 ready_to_exec = ''
                 for x in modified_array_of_string:
                     ready_to_exec = ready_to_exec+x
                 #print(ready_to_exec)
                 eng.write(ready_to_exec)
-                #print('ready_to_exec')
             else:
                 #print(modified_string)
                 eng.write(modified_string)
-                #print('writing')
         eng.close()
         
         # Stops modifying the op.txt file and opens it as read only once the execution is done and the output it stored in op.py
@@ -101,7 +117,7 @@ class enligne:
     def displayoutput(self):            
         self.eng_file = open('test.py','r')
         #print('reads')
-        #print(self.eng_file.readlines())
+        print(self.eng_file.readlines())
         self.eng_file.seek(0)
         old_stdout = sys.stdout
         result = StringIO() 
@@ -133,6 +149,5 @@ class enligne:
 
         
 obj = enligne() 
-print(obj.execute("Τύπωσε('Test')",dix.en,dix.gr))
-#enligne.execute(self,"Τύπωσε('Test')",dix.en,dix.gr)
-#Τύπωσε('Test')
+print(obj.execute("Τύπωσε('Τύπωσε छापा')",dix.en_final,dix.gr_final))
+#print(obj.execute("छापा('छापा')",dix.en_final,dix.mar_final))

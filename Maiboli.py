@@ -112,10 +112,12 @@ class maiboli:
                 for i in modified_string:
                     modified_array_of_string.append(i)
                 count = indexset[0]+1
+                print("modified string" +str(modified_string))
                 modified_array_of_string.pop(0)
                 for i in scam:
                     modified_array_of_string.insert(count,i)
                     count+=1
+                    print("modified array of string" +str(modified_array_of_string))
                 print(modified_array_of_string)
                 ready_to_exec = ''
                 for x in modified_array_of_string:
