@@ -61,7 +61,7 @@ class enligne:
             for i in modified_array_of_string:
                 modified_string = modified_string+i
             modified_string = modified_string + '\n'
-            print("HEY THIS IS WHAT YOU WANT TO SEE")
+            print("Modified string 1")
             print(modified_string)
             
             #The Content stays without the quoted stuff, before running the conversion module.
@@ -75,22 +75,40 @@ class enligne:
             Solution:
             Screw this, I'm hardcoding in the dix.py file with required spacings.
             """
-            for x in dix1:
-                count = dix1.index(x) 
-                #print(dix2[count],dix1[count])
-                modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
-            print("HEY THIS IS 2nd thing")
+            length_of_func=[]               #Gonna note here the length of a function in ENG dix, do +1/+2 
+                                            #Guessing that i'll take me to the point after the bracket
+            for count in range(0,len(dix1)): #Count is the array index of these dixs
+                #count = dix1.index(x)
+                #if(dix2[count])
+                print(dix2[count].strip(),modified_string)
+                if(dix2[count].strip() in modified_string):
+                    length_of_func.append(dix1[count].strip())
+                    modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.                                                #print(count)
+                                                                    #print(dix2[count],dix1[count])
+                #modified_string = modified_string.replace(dix2[count],dix1[count]) #Conversion module to convert marathi stuff into python code.
+            print("modified string 2")
             print(modified_string)
                 #modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
+            #Backup
+            # for x in dix1:
+            #     count = dix1.index(x)
+            #                                                         #print(count)
+            #                                                         #print(dix2[count],dix1[count])
+            #     modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
+            #     #modified_string = modified_string.replace(dix2[count],dix1[count]) #Conversion module to convert marathi stuff into python code.
+            #     print("modified string 2")
+            #     print(modified_string)
+            #     #modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
             
             """ This code is to get the quoted stuff back inside the output before putting it in the interpreter"""
             modified_array_of_string = ['']
             if quotes == True:
                 for i in modified_string:
                     modified_array_of_string.append(i)
+                #count = indexset[0]
+                count = len(length_of_func[0])+2
                 print("TESTTYYGUZYGUYRZEVYTEZYRTFZVTY")
-                count = indexset[0]
-                print(count,indexset[1])
+                print(count)
                 """
                 #THIS COUNT PARAMETER IS A BITCH
                 Count variable is storing the index of the place where the quotation marks started / ended.
@@ -161,5 +179,8 @@ class enligne:
 
         
 obj = enligne() 
-print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
+#print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
+# ignore print(obj.execute("tẹjade('tẹjade Τύπωσε छापा')",dix.en_final,dix.yrb_final))
+
 #print(obj.execute("छापा('छापा')",dix.en_final,dix.mar_final))
+print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
