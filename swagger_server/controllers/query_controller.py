@@ -4,7 +4,8 @@ import six
 from swagger_server.models.test_query import TestQuery  # noqa: E501
 from swagger_server.models.user_query import UserQuery  # noqa: E501
 from swagger_server import util
-
+import enligne as el
+import dix
 
 def execute_query(body):  # noqa: E501
     """Queries for executing code
@@ -33,4 +34,7 @@ def test_query(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = TestQuery.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    eng = dix.en_final
+    if(body.lang == "mar"):
+        tgt = dix.mar_final
+    return el.obj.execute(str(body.query),eng,tgt)

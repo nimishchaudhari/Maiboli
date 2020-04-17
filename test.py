@@ -1,1 +1,1 @@
-print('imprime  tẹjade ')
+print('zafyugzayuf ंेपाछ')
