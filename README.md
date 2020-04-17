@@ -8,8 +8,20 @@ This web service was built with the usage of [Swagger UI](https://editor.swagger
 A research paper sharing the insights of Maiboli as a programming method, can serve for the well being of common individuals not understanding English, but wishing to learn python programming is published [here](https://ieeexplore.ieee.org/document/8973043).
 
 For any queries contact me [here](mailto:nimish.mailbox@gmail.com)
-
 **Requirements:**
+=======
+## Language Support
+- Marathi
+
+In progress:
+- Greek
+- Yoruba
+- Arabic
+- Urdu
+- Hindi
+
+
+## Requirements:
 
 For Maiboli solution:
 ```bash
