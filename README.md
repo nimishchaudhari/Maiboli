@@ -9,9 +9,8 @@ A research paper sharing the insights of Maiboli as a programming method, can se
 
 For any queries contact me [here](mailto:nimish.mailbox@gmail.com)
 
-**Requirements:**
-=======
 ## Language Support
+
 - Marathi
 
 In progress:
