@@ -1,14 +1,65 @@
 openapi: 3.0.0
 info:
-  title: Custormer API
-  description: This is a simple User API by GROUP 3.
-  version: 0.2.3
+  title: Maiboli API
+  description: |
+    Web service based on Maiboli:  https://nimishchaudhari.github.io/Maiboli/
+  version: 0.2.9 with Query functions
 servers:
 - url: /
 tags:
 - name: User
   description: Operations about Users
 paths:
+  /query:
+    post:
+      tags:
+      - Query
+      summary: Queries for executing code
+      description: |
+        This post type request should input the following in a json format query*  string lang*  string user_id*  string passwd*  string Query should not have double quotes in the code, since that'll clash with the json double quotes lang codes:  mar - Marathi fr - French ur - Urdu gk - Greek
+      operationId: execute_query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserQuery'
+        required: true
+      responses:
+        "202":
+          description: Successful executed, returning response
+        "204":
+          description: Executed with an error in the query
+        "400":
+          description: Bad language request
+        "401":
+          description: Bad username / password
+      x-swagger-router-controller: swagger_server.controllers.user_controller
+      x-openapi-router-controller: swagger_server.controllers.query_controller
+  /testquery:
+    post:
+      tags:
+      - Query
+      summary: Queries for executing code
+      description: |
+        This post type request should input the following in a json format query*  string lang*  string user_id*  string passwd*  string Query should not have double quotes in the code, since that'll clash with the json double quotes lang codes:  mar - Marathi fr - French ur - Urdu gk - Greek
+      operationId: test_query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestQuery'
+        required: true
+      responses:
+        "202":
+          description: Successful executed, returning response
+        "204":
+          description: Executed with an error in the query
+        "400":
+          description: Bad language request
+        "401":
+          description: Bad username / password
+      x-swagger-router-controller: swagger_server.controllers.user_controller
+      x-openapi-router-controller: swagger_server.controllers.query_controller
   /User:
     get:
       tags:
@@ -41,7 +92,7 @@ paths:
           description: User already exists
       x-swagger-router-controller: swagger_server.controllers.user_controller
       x-openapi-router-controller: swagger_server.controllers.user_controller
-  /User/{id}:
+  /User/{id}/:
     put:
       tags:
       - User
@@ -122,3 +173,30 @@ components:
           type: integer
         Modification:
           type: string
+    UserQuery:
+      required:
+      - lang
+      - passwd
+      - query
+      - user_id
+      type: object
+      properties:
+        query:
+          type: string
+        lang:
+          type: string
+        user_id:
+          type: string
+        passwd:
+          type: string
+    TestQuery:
+      required:
+      - lang
+      - query
+      type: object
+      properties:
+        query:
+          type: string
+        lang:
+          type: string
+

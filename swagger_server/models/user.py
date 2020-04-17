@@ -14,25 +14,25 @@ class User(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id: str=None, _pass: str=None):  # noqa: E501
+    def __init__(self, id: str=None, passwd: str=None):  # noqa: E501
         """User - a model defined in Swagger
 
         :param id: The id of this User.  # noqa: E501
         :type id: str
-        :param _pass: The _pass of this User.  # noqa: E501
-        :type _pass: str
+        :param passwd: The passwd of this User.  # noqa: E501
+        :type passwd: str
         """
         self.swagger_types = {
             'id': str,
-            '_pass': str
+            'passwd': str
         }
 
         self.attribute_map = {
             'id': 'id',
-            '_pass': 'pass'
+            'passwd': 'passwd'
         }
         self._id = id
-        self.__pass = _pass
+        self._passwd = passwd
 
     @classmethod
     def from_dict(cls, dikt) -> 'User':
@@ -69,24 +69,24 @@ class User(Model):
         self._id = id
 
     @property
-    def _pass(self) -> str:
-        """Gets the _pass of this User.
+    def passwd(self) -> str:
+        """Gets the passwd of this User.
 
 
-        :return: The _pass of this User.
+        :return: The passwd of this User.
         :rtype: str
         """
-        return self.__pass
+        return self._passwd
 
-    @_pass.setter
-    def _pass(self, _pass: str):
-        """Sets the _pass of this User.
+    @passwd.setter
+    def passwd(self, passwd: str):
+        """Sets the passwd of this User.
 
 
-        :param _pass: The _pass of this User.
-        :type _pass: str
+        :param passwd: The passwd of this User.
+        :type passwd: str
         """
-        if _pass is None:
-            raise ValueError("Invalid value for `_pass`, must not be `None`")  # noqa: E501
+        if passwd is None:
+            raise ValueError("Invalid value for `passwd`, must not be `None`")  # noqa: E501
 
-        self.__pass = _pass
+        self._passwd = passwd

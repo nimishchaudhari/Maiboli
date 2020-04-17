@@ -6,6 +6,7 @@ from flask import json
 from six import BytesIO
 
 from swagger_server.models.user import User  # noqa: E501
+from swagger_server.models.user_modi import UserModi  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
@@ -32,7 +33,7 @@ class TestUserController(BaseTestCase):
         Delete user
         """
         response = self.client.open(
-            '/User/{id}'.format(id='id_example'),
+            '/User/{id}/'.format(id='id_example'),
             method='DELETE')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -53,9 +54,9 @@ class TestUserController(BaseTestCase):
 
         Modify user
         """
-        body = User()
+        body = UserModi()
         response = self.client.open(
-            '/User/{id}'.format(id='id_example'),
+            '/User/{id}/'.format(id='id_example'),
             method='PUT',
             data=json.dumps(body),
             content_type='application/json')

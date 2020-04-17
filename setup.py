@@ -17,10 +17,10 @@ REQUIRES = ["connexion"]
 setup(
     name=NAME,
     version=VERSION,
-    description="Custormer API",
+    description="Maiboli API",
     author_email="",
     url="",
-    keywords=["Swagger", "Custormer API"],
+    keywords=["Swagger", "Maiboli API"],
     install_requires=REQUIRES,
     packages=find_packages(),
     package_data={'': ['swagger/swagger.yaml']},
@@ -28,6 +28,6 @@ setup(
     entry_points={
         'console_scripts': ['swagger_server=swagger_server.__main__:main']},
     long_description="""\
-    This is a simple User API by GROUP 3.
+    Web service based on Maiboli:  https://nimishchaudhari.github.io/Maiboli/ 
     """
 )

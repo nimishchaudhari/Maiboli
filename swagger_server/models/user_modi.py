@@ -14,13 +14,13 @@ class UserModi(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id: str=None, _pass: str=None, option: int=None, modification: str=None):  # noqa: E501
+    def __init__(self, id: str=None, passwd: str=None, option: int=None, modification: str=None):  # noqa: E501
         """UserModi - a model defined in Swagger
 
         :param id: The id of this UserModi.  # noqa: E501
         :type id: str
-        :param _pass: The _pass of this UserModi.  # noqa: E501
-        :type _pass: str
+        :param passwd: The passwd of this UserModi.  # noqa: E501
+        :type passwd: str
         :param option: The option of this UserModi.  # noqa: E501
         :type option: int
         :param modification: The modification of this UserModi.  # noqa: E501
@@ -28,20 +28,19 @@ class UserModi(Model):
         """
         self.swagger_types = {
             'id': str,
-            '_pass': str,
+            'passwd': str,
             'option': int,
             'modification': str
         }
 
         self.attribute_map = {
             'id': 'id',
-            '_pass': 'pass',
+            'passwd': 'passwd',
             'option': 'Option',
             'modification': 'Modification'
         }
-        self.id = id
         self._id = id
-        self.__pass = _pass
+        self._passwd = passwd
         self._option = option
         self._modification = modification
 
@@ -80,27 +79,27 @@ class UserModi(Model):
         self._id = id
 
     @property
-    def _pass(self) -> str:
-        """Gets the _pass of this UserModi.
+    def passwd(self) -> str:
+        """Gets the passwd of this UserModi.
 
 
-        :return: The _pass of this UserModi.
+        :return: The passwd of this UserModi.
         :rtype: str
         """
-        return self.__pass
+        return self._passwd
 
-    @_pass.setter
-    def _pass(self, _pass: str):
-        """Sets the _pass of this UserModi.
+    @passwd.setter
+    def passwd(self, passwd: str):
+        """Sets the passwd of this UserModi.
 
 
-        :param _pass: The _pass of this UserModi.
-        :type _pass: str
+        :param passwd: The passwd of this UserModi.
+        :type passwd: str
         """
-        if _pass is None:
-            raise ValueError("Invalid value for `_pass`, must not be `None`")  # noqa: E501
+        if passwd is None:
+            raise ValueError("Invalid value for `passwd`, must not be `None`")  # noqa: E501
 
-        self.__pass = _pass
+        self._passwd = passwd
 
     @property
     def option(self) -> int:
