@@ -34,11 +34,11 @@ class enligne:
             quotes = False              # Setting flags to help figure out if the index has quotes
             endindex = 1                # Just initializing for keeping the last index of the quoted character
             scam = []                   # Array to put those "quoted characters" in
-            tab_count.append(str(y).find('\t')) #Trying to note down no of tabs on each line
-            if(y.count('\t')>0):
-                tc+=1
-                tc_flag=True
-                print("FLAG TURNED UPP")
+            #tab_count.append(str(y).find('\t')) #Trying to note down no of tabs on each line
+            #if(y.count('\t')>0):
+            #    tc+=1
+            #    tc_flag=True
+            tc+=y.count('\t')
                                         #Then I'm gonna use it with the count variable line by line 
                                         #  and hope it works
             for i in array:             # Calling one letter at a time
@@ -103,10 +103,10 @@ class enligne:
                 for i in modified_string:
                     modified_array_of_string.append(i)
                 #count = indexset[0]
-                if(tc_flag):
-                    count = len(length_of_func[0])+1+tc#+tab_count
-                else:
-                    count = len(length_of_func[0])+1#+tab_count
+                #if(tc_flag):
+                count = len(length_of_func[0])+1+tc#+tab_count
+                #else:
+                #    count = len(length_of_func[0])+1#+tab_count
                 """
                 #THIS COUNT PARAMETER IS A BITCH
                 Count variable is storing the index of the place where the quotation marks started / ended.
@@ -121,7 +121,7 @@ class enligne:
                     modified_array_of_string.pop(0)
                 # if(modified_array_of_string[-1]=='\n'):
                 #     modified_array_of_string.pop(len(modified_array_of_string)-1)
-                print("modified array"+"grnegnibgn   "+str(modified_array_of_string))
+                #"modified array"+"grnegnibgn   "+str(modified_array_of_string))
                 #modified_array_of_string.pop(0)
                 for i in scam:
                     modified_array_of_string.insert(count,i)
@@ -135,7 +135,6 @@ class enligne:
             else:
                 #print(modified_string)
                 eng.write(modified_string)
-            tc=0
         eng.close()
         
         # Stops modifying the op.txt file and opens it as read only once the execution is done and the output it stored in op.py
@@ -184,13 +183,15 @@ class enligne:
 obj = enligne() 
 # ignore print(obj.execute("tẹjade('tẹjade Τύπωσε छापा')",dix.en_final,dix.yrb_final))
 
-# print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
-x="तोपर्यंत बा मध्ये रांग(0,4): \n\tछापा('iugerhuihgireviugerhuihgire')\n\tछापा('iugerhuihgireviugerhuihgire')"
-print(x)
+print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
+x="तोपर्यंत बा मध्ये रांग(0,4): \n\tतोपर्यंत बा मध्ये रांग(0,4): \n\t\tछापा('iugerhuihgireviugerhuihgire')\n\t\tछापा('iugerhuihgireviugerhuihgire')"
+#print(x)
 print(obj.execute(x,dix.en_final,dix.mar_final))
 print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
-#print(obj.execute("tẹjade('uighzuihiez  tẹjade ')",dix.en_final,dix.yrb_final))
-#print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
+print(obj.execute("tẹjade('uighzuihiez  tẹjade ')",dix.en_final,dix.yrb_final))
+print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
+y="तोपर्यंत बा मध्ये रांग(0,4):\n\tछापा('iugerhuihgireviugerhuihgire')\n\tछापा('iugerhuihgireviugerhuihgire')"
+print(obj.execute(y,dix.en_final,dix.mar_final))
 #print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
 
 
