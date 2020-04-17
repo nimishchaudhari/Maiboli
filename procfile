@@ -1,2 +1,1 @@
-t1: python3 python-flask-server-generated/setup.py install
-t2: python3 -m python-flask-server-generated/swagger_server/swagger_server
+web: python3 python-flask-server-generated/setup.py install && python3 -m python-flask-server-generated/swagger_server/swagger_server
