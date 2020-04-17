@@ -176,7 +176,7 @@ class maiboli:
         self.txt.insert(END,argi)
     def clearall(self): 
         """when clear button is pressed,clears the text input area"""
-        x=0
+        #x=0
 
     def __init__(self,master): 
         """Constructor method"""

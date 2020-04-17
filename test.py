@@ -1,1 +1,1 @@
-print('طباعة igueruygue')
+print('imprime  tẹjade ')
