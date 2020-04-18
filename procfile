@@ -1,1 +1,0 @@
-web: python3 -m python-flask-server-generated/swagger_server/swagger_server 
