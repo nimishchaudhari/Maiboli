@@ -23,3 +23,5 @@ for i in dix.list_of_avail_lang:
     print("```bash")
     print(building_examples(ip,dix.en_final,i))
     print("```")
+
+    
