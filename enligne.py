@@ -5,6 +5,11 @@ import exp
 from io import StringIO     #Python3 - console output reader
 
 class enligne:
+    def json_query(self,body):
+        op_string_array = body.split("\n")
+        op_text = '\n'.join(op_string_array)
+        print(op_text)
+        return op_text
     def pullquotedstring(self,indexset,array,scam): #Define Funtion
         for i in range(indexset[0],indexset[1]+1):  
                 scam.append(array[i])
@@ -17,6 +22,7 @@ class enligne:
             op_arr.append(i)
         return op_arr
     def execute(self,inputtext,dix1,dix2):        # Dix1: English Version, Dix2: Target language
+        inputtext = self.json_query(inputtext)
         eng = open('test.py','w')         # Opening a blank file to save the input data into
         #print(inputtext)                # Printing the data input from the user in the console for reference
         iparr = inputtext.split('\n')   # Splitting the data code paragraph into lines - iparr (Lines of code in Marathi)
@@ -158,18 +164,18 @@ class enligne:
         try:
             exec(self.eng_file.read())
 
-        except SyntaxError:
-            #print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
-            print(exp.exc_mar[0])
-            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
+        # except SyntaxError:
+        #     #print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
+        #     print(exp.exc_mar[0])
+        #     """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
             
         except NameError:
             print('NameError')
         # except SyntaxError.IndentationError:
         #     print('इनपुट दरम्यान जागा तपासा')
-        except Exception:
-            #print("अवैध्य इनपुट")
-            print(exp.exc_mar[1])
+        #except Exception:
+        #    #print("अवैध्य इनपुट")
+        #    print(exp.exc_mar[1])
             #End of stuff that gets copied in that variable.
         sys.stdout = old_stdout
         
@@ -183,11 +189,9 @@ obj = enligne()
 # ignore print(obj.execute("tẹjade('tẹjade Τύπωσε छापा')",dix.en_final,dix.yrb_final))
 
 # print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
-# print(obj.execute("छापा('छापा')",dix.en_final,dix.mar_final))
+print(obj.execute("तोपर्यंत बा मध्ये रांग(0,4):\n\tतोपर्यंत बा मध्ये रांग(0,4):\n\t\tछापा('33')\n\t\tछापा('44')\n",dix.en_final,dix.mar_final))
 # print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
 # print(obj.execute("tẹjade('uighzuihiez  tẹjade ')",dix.en_final,dix.yrb_final))
 # print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
-print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
-
-
+#print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
 

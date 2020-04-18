@@ -158,20 +158,20 @@ class enligne:
         try:
             exec(self.eng_file.read())
 
-        except SyntaxError:
-            #print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
-            print(exp.exc_mar[0])
+        # except SyntaxError:
+        #     #print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
+        #     print(exp.exc_mar[0])
             
-            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
+        #     """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
             
         except NameError:
             print('NameError')
         # except SyntaxError.IndentationError:
         #     print('इनपुट दरम्यान जागा तपासा')
-        except Exception:
-            #print("अवैध्य इनपुट")
-            print(exp.exc_mar[1])
-            #End of stuff that gets copied in that variable.
+        # except Exception:
+        #     #print("अवैध्य इनपुट")
+        #     print(exp.exc_mar[1])
+        #     #End of stuff that gets copied in that variable.
         sys.stdout = old_stdout
         
         result_string = result.getvalue()
@@ -187,11 +187,11 @@ print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.e
 x="तोपर्यंत बा मध्ये रांग(0,4): \n\tतोपर्यंत बा मध्ये रांग(0,4): \n\t\tछापा('iugerhuihgireviugerhuihgire')\n\t\tछापा('iugerhuihgireviugerhuihgire')"
 #print(x)
 print(obj.execute(x,dix.en_final,dix.mar_final))
-print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
-print(obj.execute("tẹjade('uighzuihiez  tẹjade ')",dix.en_final,dix.yrb_final))
-print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
-y="तोपर्यंत बा मध्ये रांग(0,4):\n\tछापा('iugerhuihgireviugerhuihgire')\n\tछापा('iugerhuihgireviugerhuihgire')"
-print(obj.execute(y,dix.en_final,dix.mar_final))
+# print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
+# print(obj.execute("tẹjade('uighzuihiez  tẹjade ')",dix.en_final,dix.yrb_final))
+# print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
+# y="तोपर्यंत बा मध्ये रांग(0,4):\n\tछापा('iugerhuihgireviugerhuihgire')\n\tछापा('iugerhuihgireviugerhuihgire')"
+# print(obj.execute(y,dix.en_final,dix.mar_final))
 #print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
 
 
