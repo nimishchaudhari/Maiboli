@@ -1,4 +1,6 @@
 #Arrays of dictionary of functions:
+
+
 en = ['print', 'for     ', 'if', 'elif ', 'else  ', 'return', 'input ', 'exec ', 'float', 'int     ', 'len  ', 'max ', 'min  ', 'range', 'round', 'str', 'sum  ', 'format', 'in   ', 'True', 'False', 'def     ', 'and', 'or  ', 'not ', 'as ', 'break', 'continue ','end ']
 en_pure = ['print', 'for', 'if', 'elif', 'else', 'return', 'input', 'exec', 'float', 'int', 'len', 'max', 'min', 'range', 'round', 'str', 'sum', 'format', 'in', 'True', 'False', 'def', 'and', 'or', 'not', 'as', 'break', 'continue','end']
 mar = ['छापा ', 'तोपर्यंत', 'जर', 'किंवा', 'नाहीतर', 'परत   ', 'माहिती', 'चालवा', 'दशांश', 'पूर्णांक', 'लांबी', 'कमाल', 'किमान', 'रांग ', 'पूर्ण', 'ओळ ', 'बेरीज', 'स्वरूप', 'मध्ये', 'खरे ', 'खोटे ', 'व्याख्या', 'आणि', 'अथवा', 'नाही', 'जसे', 'खंडित', 'चालूठेवणे','शेवट']
@@ -34,6 +36,8 @@ ger_final = ['druck                         ', 'fuer                          ',
 
 tam_final = ['அச்சு                         ', 'வரை                           ', 'என்றால்                       ', 'வேறு                          ', 'இல்லை_என்றால்                 ', ' திருப்பவும்                  ', 'உள்ளீடு                       ', 'இயங்கு                        ', 'மித                           ', 'எண்                           ', 'நீளம்                         ', 'அதிகபட்சம்                    ', 'குறைந்தபட்சம்                 ', 'சரகம்                         ', 'தோராயம்                       ', 'வார்த்தை                      ', 'கூட்டு                        ', 'வடிவம்                        ', 'இல்                           ', 'மெய்                          ', 'பொய்                          ', 'விவரி                         ', 'மற்றும்                       ', 'அல்லது                        ', 'இல்ல                          ', 'என                            ', 'முறிவு                        ', 'தொடர்                         ', 'முடிவு                        ']
 
+
+list_of_avail_lang = [hin_final,mar_final,fr_final,sp_final,urd_final,ger_final,tam_final,yrb_final,gr_final]
 
 def revised_create_spacings(dix): #Dix 1 being the target lang, Dix2 being english
     length = 30
