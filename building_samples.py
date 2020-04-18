@@ -6,8 +6,8 @@ ip = """
 def star(x):
     for i in range(0,x):
         for j in range(0,i+1):
-            print("*", end='')
-        print("")
+            print('*', end='')
+        print('')
 x = 5
 print(star(x))
 """
@@ -20,4 +20,6 @@ def building_examples(ip,dix1,dix2):
     return ip
 
 for i in dix.list_of_avail_lang:
+    print("```bash")
     print(building_examples(ip,dix.en_final,i))
+    print("```")
