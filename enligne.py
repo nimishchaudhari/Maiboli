@@ -20,9 +20,12 @@ class enligne:
         eng = open('test.py','w')         # Opening a blank file to save the input data into
         #print(inputtext)                # Printing the data input from the user in the console for reference
         iparr = inputtext.split('\n')   # Splitting the data code paragraph into lines - iparr (Lines of code in Marathi)
+        tab_count=[]                #Counting no of \ts
         #iparr.pop()                     # Popping the last line since it's a blank spot 
         #print(iparr)                    # Printing the array of lines of code for reference.
         for y in iparr:                 # y is the line input 
+            tc = 0
+            tc_flag=False
             array = []                  # This one's to chop the sentence into letters 
             indexset = []               # This one's to keep the start and end index of the "quoted area"   
             for char in y:
@@ -31,6 +34,13 @@ class enligne:
             quotes = False              # Setting flags to help figure out if the index has quotes
             endindex = 1                # Just initializing for keeping the last index of the quoted character
             scam = []                   # Array to put those "quoted characters" in
+            #tab_count.append(str(y).find('\t')) #Trying to note down no of tabs on each line
+            #if(y.count('\t')>0):
+            #    tc+=1
+            #    tc_flag=True
+            tc+=y.count('\t')
+                                        #Then I'm gonna use it with the count variable line by line 
+                                        #  and hope it works
             for i in array:             # Calling one letter at a time
                 #print(i)
                 """
@@ -87,29 +97,16 @@ class enligne:
                     modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.                                                #print(count)
                                                                     #print(dix2[count],dix1[count])
                 #modified_string = modified_string.replace(dix2[count],dix1[count]) #Conversion module to convert marathi stuff into python code.
-            #print("modified string 2")
-            #print(modified_string)
-                #modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
-            #Backup
-            # for x in dix1:
-            #     count = dix1.index(x)
-            #                                                         #print(count)
-            #                                                         #print(dix2[count],dix1[count])
-            #     modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
-            #     #modified_string = modified_string.replace(dix2[count],dix1[count]) #Conversion module to convert marathi stuff into python code.
-            #     print("modified string 2")
-            #     print(modified_string)
-            #     #modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
-            
             """ This code is to get the quoted stuff back inside the output before putting it in the interpreter"""
             modified_array_of_string = ['']
             if quotes == True:
                 for i in modified_string:
                     modified_array_of_string.append(i)
                 #count = indexset[0]
-                count = len(length_of_func[0])+2
-                #print("TESTTYYGUZYGUYRZEVYTEZYRTFZVTY")
-                #print(count)
+                #if(tc_flag):
+                count = len(length_of_func[0])+1+tc#+tab_count
+                #else:
+                #    count = len(length_of_func[0])+1#+tab_count
                 """
                 #THIS COUNT PARAMETER IS A BITCH
                 Count variable is storing the index of the place where the quotation marks started / ended.
@@ -120,11 +117,15 @@ class enligne:
                 ##Have to figure out what's the scene here, it lets me work with Greek, but not with Marathi now
                 ##If i have it set to +1, it works in Marathi, then not in Greek. WTF?
                 """
-                #print("modified array" +str(modified_string)+"grnegnibgn"+str(modified_array_of_string))
+                if(modified_array_of_string[0]==''):
+                    modified_array_of_string.pop(0)
+                # if(modified_array_of_string[-1]=='\n'):
+                #     modified_array_of_string.pop(len(modified_array_of_string)-1)
+                #"modified array"+"grnegnibgn   "+str(modified_array_of_string))
                 #modified_array_of_string.pop(0)
                 for i in scam:
                     modified_array_of_string.insert(count,i)
-                    count+=1
+                    #count+=1
                 #print("modified array of string" +str(modified_array_of_string))
                 ready_to_exec = ''
                 for x in modified_array_of_string:
@@ -147,8 +148,7 @@ class enligne:
 
     def displayoutput(self):            
         self.eng_file = open('test.py','r')
-        #print('reads')
-        #print(self.eng_file.readlines())
+        print(self.eng_file.read())
         self.eng_file.seek(0)
         old_stdout = sys.stdout
         result = StringIO() 
@@ -158,19 +158,20 @@ class enligne:
         try:
             exec(self.eng_file.read())
 
-        except SyntaxError:
-            #print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
-            print(exp.exc_mar[0])
-            """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
+        # except SyntaxError:
+        #     #print('अवैध्य इनपुट, कृपया कोड तपासून पहा')
+        #     print(exp.exc_mar[0])
+            
+        #     """अवैध्य इनपुट, कृपया ओळ क्रमांक <member 'lineno' of 'SyntaxError' objects>तपासून पहा""" #This string can be put up as per your setup language for exception handling
             
         except NameError:
             print('NameError')
         # except SyntaxError.IndentationError:
         #     print('इनपुट दरम्यान जागा तपासा')
-        except Exception:
-            #print("अवैध्य इनपुट")
-            print(exp.exc_mar[1])
-            #End of stuff that gets copied in that variable.
+        # except Exception:
+        #     #print("अवैध्य इनपुट")
+        #     print(exp.exc_mar[1])
+        #     #End of stuff that gets copied in that variable.
         sys.stdout = old_stdout
         
         result_string = result.getvalue()
@@ -182,12 +183,17 @@ class enligne:
 obj = enligne() 
 # ignore print(obj.execute("tẹjade('tẹjade Τύπωσε छापा')",dix.en_final,dix.yrb_final))
 
-# print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
-# print(obj.execute("छापा('छापा')",dix.en_final,dix.mar_final))
+print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
+x="तोपर्यंत बा मध्ये रांग(0,4): \n\tतोपर्यंत बा मध्ये रांग(0,4): \n\t\tछापा('iugerhuihgireviugerhuihgire')\n\t\tछापा('iugerhuihgireviugerhuihgire')"
+#print(x)
+print(obj.execute(x,dix.en_final,dix.mar_final))
 # print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
 # print(obj.execute("tẹjade('uighzuihiez  tẹjade ')",dix.en_final,dix.yrb_final))
 # print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
-print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
+# y="तोपर्यंत बा मध्ये रांग(0,4):\n\tछापा('iugerhuihgireviugerhuihgire')\n\tछापा('iugerhuihgireviugerhuihgire')"
+# print(obj.execute(y,dix.en_final,dix.mar_final))
+#print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
+
 
 
 
