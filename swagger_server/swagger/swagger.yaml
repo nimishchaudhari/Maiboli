@@ -92,6 +92,42 @@ paths:
           description: User already exists
       x-swagger-router-controller: swagger_server.controllers.user_controller
       x-openapi-router-controller: swagger_server.controllers.user_controller
+  /User/logout:
+    get:
+      tags:
+      - User
+      summary: Logout the user
+      description: 'Logout user if logged in'
+      operationId: user_logout
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not logged in
+      x-swagger-router-controller: swagger_server.controllers.user_controller
+      x-openapi-router-controller: swagger_server.controllers.user_controller
+  /User/login:
+    post:
+      tags:
+      - User
+      summary: Login user
+      operationId: user_login
+      description: 'To login to allow using query and user modification / deletion'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: Login successful
+        "400":
+          description: Bad language request
+        "401":
+          description: Bad username / password
+      x-swagger-router-controller: swagger_server.controllers.user_controller
+      x-openapi-router-controller: swagger_server.controllers.user_controller #.query_controller
   /User/{id}/:
     put:
       tags:

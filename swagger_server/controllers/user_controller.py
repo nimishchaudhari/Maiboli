@@ -6,7 +6,7 @@ from swagger_server.models.user_modi import UserModi  # noqa: E501
 from swagger_server import util
 import pyrebase
 
-
+loggedin_user = []
 '''
 Firebase essentials
 '''
@@ -63,6 +63,28 @@ def delete_user(id):  # noqa: E501
     """
     return 'do some magic!'
 
+def user_login(body):  # noqa: E501
+    """Creates a customer.
+
+     # noqa: E501
+
+    :param body: 
+    :type body: dict | bytes
+
+    :rtype: None
+    """
+    
+    return 'Magic'
+    
+def user_logout():  # noqa: E501
+    """Get Users
+
+    Get all Users from the DB  # noqa: E501
+
+
+    :rtype: None
+    """
+    return 'do some magic!'
 
 def get_all_users():  # noqa: E501
     """Get Users
