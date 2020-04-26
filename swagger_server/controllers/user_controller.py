@@ -6,7 +6,6 @@ from swagger_server.models.user_modi import UserModi  # noqa: E501
 from swagger_server import util
 import pyrebase
 
-loggedin_user = []
 '''
 Firebase essentials
 '''
@@ -28,6 +27,11 @@ user = auth.sign_in_with_email_and_password("test@maiboli.fr", '123123')
 db = firebase.database()
 user = auth.refresh(user['refreshToken'])
 token = user['idToken']
+
+#Variables for login mgmt
+class login_mgmt:
+    loggedin_user = []
+    admin = 0
 
 
 def create_user(body):  # noqa: E501
@@ -51,7 +55,7 @@ def create_user(body):  # noqa: E501
     return str(body)
 
 
-def delete_user(id):  # noqa: E501
+def delete_user(id_):  # noqa: E501
     """Delete user
 
     To delete a user entry # noqa: E501
@@ -61,7 +65,14 @@ def delete_user(id):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    if(len(login_mgmt.loggedin_user)!=0 and login_mgmt.admin == True):
+        # After verifying rights, now delete a user
+        db.child("userlist").child(id_).remove()
+        return 'removed'
+    elif(login_mgmt.admin == False):
+        return 'no admin rights found, sorry'
+    else:
+        return 'login first please'
 
 def user_login(body):  # noqa: E501
     """Creates a customer.
@@ -73,18 +84,37 @@ def user_login(body):  # noqa: E501
 
     :rtype: None
     """
-    
-    return 'Magic'
+    if connexion.request.is_json:
+        body = User.from_dict(connexion.request.get_json())  # noqa: E501
+    #Trying with update(data)
+    if(len(login_mgmt.loggedin_user) ==0):
+        if(db.child("userlist").child(body.id).child(body.id).get().val()== None 
+        and 
+        db.child("userlist").child(body.id).child("pass").get().val()!= body.passwd):
+            return 401              # Login ID Pass error
+        else:
+            if(db.child("userlist").child(body.id).child("admin_status").get().val()== True ): #Check if it has admin access
+                login_mgmt.admin = True         #Update it in local variable
+            login_mgmt.loggedin_user.append(str(body.id))   # Adding the username in the array for reference
+            return 200
+    else:
+        return 'already logged in, logout first'
     
 def user_logout():  # noqa: E501
-    """Get Users
+    """Logout all users
 
     Get all Users from the DB  # noqa: E501
 
 
     :rtype: None
     """
-    return 'do some magic!'
+    if(len(login_mgmt.loggedin_user)!=0):       # To logout existing users
+        login_mgmt.loggedin_user.pop(0)
+        login_mgmt.admin = False
+        return 200
+    else:                                       # If no user logged in
+        return 200
+    
 
 def get_all_users():  # noqa: E501
     """Get Users
