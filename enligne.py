@@ -194,6 +194,10 @@ obj = enligne()
 # print(obj.execute(y,dix.en_final,dix.mar_final))
 #print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
 
+def sel_dict(name):
+    print(exec("dix."+str(name)))
+    #return x
 
-
-
+x = sel_dict("mar")
+#y = dix.fr
+print(x)#,y)

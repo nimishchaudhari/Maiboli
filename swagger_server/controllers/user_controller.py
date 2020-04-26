@@ -75,7 +75,7 @@ def delete_user(id_):  # noqa: E501
         return 'login first please'
 
 def user_login(body):  # noqa: E501
-    """Creates a customer.
+    """Logs in a user.
 
      # noqa: E501
 
