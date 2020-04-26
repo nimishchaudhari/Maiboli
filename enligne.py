@@ -183,10 +183,10 @@ class enligne:
 obj = enligne() 
 # ignore print(obj.execute("tẹjade('tẹjade Τύπωσε छापा')",dix.en_final,dix.yrb_final))
 
-print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
-x="तोपर्यंत बा मध्ये रांग(0,4): \n\tतोपर्यंत बा मध्ये रांग(0,4): \n\t\tछापा('iugerhuihgireviugerhuihgire')\n\t\tछापा('iugerhuihgireviugerhuihgire')"
+#print(obj.execute("Τύπωσε('Τύπωσε Τύπωσε छापा')",dix.en_final,dix.gr_final))
+#x="तोपर्यंत बा मध्ये रांग(0,4): \n\tतोपर्यंत बा मध्ये रांग(0,4): \n\t\tछापा('iugerhuihgireviugerhuihgire')\n\t\tछापा('iugerhuihgireviugerhuihgire')"
 #print(x)
-print(obj.execute(x,dix.en_final,dix.mar_final))
+#print(obj.execute(x,dix.en_final,dix.mar_final))
 # print(obj.execute("छापें('छापें fuyazguyfaz')",dix.en_final,dix.hin_final))
 # print(obj.execute("tẹjade('uighzuihiez  tẹjade ')",dix.en_final,dix.yrb_final))
 # print(obj.execute("طباعة('طباعة igueruygue')",dix.en_final,dix.arb_final))
