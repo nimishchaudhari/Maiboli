@@ -45,10 +45,12 @@ def execute_query(body):  # noqa: E501
     if connexion.request.is_json:
         body = UserQuery.from_dict(connexion.request.get_json())  # noqa: E501
     if (len(uc.login_mgmt.loggedin_user) == 1):
-        op = el.obj.execute(str(body.query),dix.en,dix.select_dictionary(body.lang))      #Executing query
+        #query = 'r"'+body.query+'"'
+        op = el.obj.execute(body.query,dix.en,dix.select_dictionary(body.lang))      #Executing query
 
         data = {
-            str(body.query):str(op)
+            #str('"'+body.query+'"'):str('"'+op+'"')
+            str('"'+body.query+'"') : str('"'+op+'"')
         }
 
         db.child("userlist").child(body.user_id).child("query").child(body.lang).push(data,token) #Updating query online with output

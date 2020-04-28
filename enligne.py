@@ -143,8 +143,8 @@ class enligne:
             #self.displayoutput()
             """ This module is to print output as per the user's problems. """
             return(self.displayoutput())
-        except Exception:
-            return('Invalid Language selected my friend')
+        except Exception as e: print(e)
+            #return('Invalid Language selected my friend Exception occured' + e)
     def displayoutput(self):            
         self.eng_file = open('test.py','r')
         print(self.eng_file.read())
@@ -192,10 +192,6 @@ obj = enligne()
 # y="तोपर्यंत बा मध्ये रांग(0,4):\n\tछापा('iugerhuihgireviugerhuihgire')\n\tछापा('iugerhuihgireviugerhuihgire')"
 # print(obj.execute(y,dix.en_final,dix.mar_final))
 #print(obj.execute("imprime('imprime  tẹjade ')",dix.en_final,dix.sp_final))
-
-def sel_dict(name):
-    print(exec("dix."+str(name)))
-    #return x
 
 #x = sel_dict("mar")
 #y = dix.fr
