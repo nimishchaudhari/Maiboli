@@ -70,9 +70,6 @@ class enligne:
                 for i in modified_array_of_string:
                     modified_string = modified_string+i
                 modified_string = modified_string + '\n'
-                # print("Modified string 1")
-                # print(modified_string)
-                
                 #The Content stays without the quoted stuff, before running the conversion module.
                 """
                 Problem: sometimes marathi dictionary has less number of words and english dictionary has more number of words
@@ -102,7 +99,7 @@ class enligne:
                         modified_array_of_string.append(i)
                     #count = indexset[0]
                     #if(tc_flag):
-                    count = len(length_of_func[0])+1+tc#+tab_count
+                    count = len(length_of_func[0])+1+tc #+tab_count
                     #else:
                     #    count = len(length_of_func[0])+1#+tab_count
                     """
@@ -121,8 +118,10 @@ class enligne:
                     #     modified_array_of_string.pop(len(modified_array_of_string)-1)
                     #"modified array"+"grnegnibgn   "+str(modified_array_of_string))
                     #modified_array_of_string.pop(0)
+                    incr = 0
                     for i in scam:
-                        modified_array_of_string.insert(count,i)
+                        modified_array_of_string.insert(count+incr,i)
+                        incr+=1
                         #count+=1
                     #print("modified array of string" +str(modified_array_of_string))
                     ready_to_exec = ''
@@ -198,5 +197,8 @@ obj = enligne()
 #print(x)#,y)
 
 ''' 
+
+तोपर्यंत बा मध्ये रांग(0,4): \n\t\tछापा('hey1')
+
 Problem is, I need to select a dictionary based on the response of the web service
 '''
