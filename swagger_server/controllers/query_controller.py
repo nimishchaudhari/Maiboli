@@ -8,7 +8,7 @@ import enligne as el
 import dix
 import pyrebase
 import swagger_server.controllers.user_controller as uc
-
+import json
 '''
 Firebase essentials
 '''
@@ -50,9 +50,9 @@ def execute_query(body):  # noqa: E501
 
         data = {
             #str('"'+body.query+'"'):str('"'+op+'"')
-            str('"'+body.query+'"') : str('"'+op+'"')
+            body.query : op
         }
-
+        data = json.dumps(data)
         db.child("userlist").child(body.user_id).child("query").child(body.lang).push(data,token) #Updating query online with output
         return op
 

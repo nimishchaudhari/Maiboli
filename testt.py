@@ -1,4 +1,2 @@
-# this is the first comment
-spam = 1  # and this is the second comment
-          # ... and now a third!
-text = "# This is not a comment because it's inside quotes."
+# Examples
+# परिभाषा star(x):\n\tके_लिए i मध्य सीमा(0,x):\n\t\tके_लिए j मध्य सीमा(0,i+1):\n\t\t\tछापें('*', समाप्त='')\n\t\tछापें('')\nx = 5\nछापें(star(x))
