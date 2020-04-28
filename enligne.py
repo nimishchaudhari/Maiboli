@@ -17,15 +17,14 @@ class enligne:
             op_arr.append(i)
         return op_arr
     def execute(self,inputtext,dix1,dix2):        # Dix1: English Version, Dix2: Target language
+        try:
         eng = open('test.py','w')         # Opening a blank file to save the input data into
         #print(inputtext)                # Printing the data input from the user in the console for reference
         iparr = inputtext.split('\n')   # Splitting the data code paragraph into lines - iparr (Lines of code in Marathi)
-        tab_count=[]                #Counting no of \ts
         #iparr.pop()                     # Popping the last line since it's a blank spot 
         #print(iparr)                    # Printing the array of lines of code for reference.
         for y in iparr:                 # y is the line input 
             tc = 0
-            tc_flag=False
             array = []                  # This one's to chop the sentence into letters 
             indexset = []               # This one's to keep the start and end index of the "quoted area"   
             for char in y:
@@ -94,9 +93,8 @@ class enligne:
                 # print(dix2[count].strip(),modified_string)
                 if(dix2[count].strip() in modified_string):
                     length_of_func.append(dix1[count].strip())
-                    modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.                                                #print(count)
-                                                                    #print(dix2[count],dix1[count])
-                #modified_string = modified_string.replace(dix2[count],dix1[count]) #Conversion module to convert marathi stuff into python code.
+                    modified_string = modified_string.replace(dix2[count].strip(),dix1[count].strip()) #Conversion module to convert marathi stuff into python code.
+
             """ This code is to get the quoted stuff back inside the output before putting it in the interpreter"""
             modified_array_of_string = ['']
             if quotes == True:
@@ -198,6 +196,10 @@ def sel_dict(name):
     print(exec("dix."+str(name)))
     #return x
 
-x = sel_dict("mar")
+#x = sel_dict("mar")
 #y = dix.fr
-print(x)#,y)
+#print(x)#,y)
+
+''' 
+Problem is, I need to select a dictionary based on the response of the web service
+'''

@@ -45,8 +45,13 @@ def execute_query(body):  # noqa: E501
     if connexion.request.is_json:
         body = UserQuery.from_dict(connexion.request.get_json())  # noqa: E501
     if (len(uc.login_mgmt.loggedin_user) == 1):
-        op = el.obj.execute(str(body.query),"eng",body.lang)      #Executing query
-        db.child("userlist").child(body.id).child("query").push(str(body.query),str(op)) #Updating query online with output
+        op = el.obj.execute(str(body.query),dix.en,dix.select_dictionary(body.lang))      #Executing query
+
+        data = {
+            str(body.query):str(op)
+        }
+
+        db.child("userlist").child(body.user_id).child("query").child(body.lang).push(data,token) #Updating query online with output
         return op
 
 
@@ -62,8 +67,8 @@ def test_query(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = TestQuery.from_dict(connexion.request.get_json())  # noqa: E501
-    eng = dix.en_final
-    if(body.lang == "mar"):
-        tgt = dix.mar_final
-    return el.obj.execute(str(body.query),eng,tgt)
+    #eng = dix.en_final
+    #if(body.lang == "mar"):
+    #    tgt = dix.mar_final
+    return 'not ok'#el.obj.execute(str(body.query),eng,tgt)
 
