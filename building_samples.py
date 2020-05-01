@@ -19,9 +19,9 @@ def building_examples(ip,dix1,dix2):
                 ip = ip.replace(dix1[index].strip(),dix2[index].strip())
     return ip
 
-for i in dix.list_of_avail_lang:
+for i in dix.obj.list_of_avail_lang:
     print("```bash")
-    print(building_examples(ip,dix.en_final,i))
+    print(building_examples(ip,dix.en,i))
     print("```")
 
     

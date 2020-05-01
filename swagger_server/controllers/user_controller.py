@@ -5,7 +5,7 @@ from swagger_server.models.user import User  # noqa: E501
 from swagger_server.models.user_modi import UserModi  # noqa: E501
 from swagger_server import util
 import pyrebase
-
+import json
 '''
 Firebase essentials
 '''
@@ -46,7 +46,6 @@ def create_user(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = User.from_dict(connexion.request.get_json())  # noqa: E501
-    #Trying with update(data)
     if(db.child("userlist").child(body.id).get().val()!= None):
         return str("Conflicts")
     else:
@@ -129,7 +128,7 @@ def get_all_users():  # noqa: E501
     return users.val()
     #return 'do some magic!'
 
-def modify_user(body, id):  # noqa: E501
+def modify_user(body, id_):  # noqa: E501
     """Modify user
 
     To modify a a username/Password  # noqa: E501
@@ -142,22 +141,30 @@ def modify_user(body, id):  # noqa: E501
     :rtype: None
     """
     if connexion.request.is_json:
-        body = User.from_dict(connexion.request.get_json())  # noqa: E501
+        body = UserModi.from_dict(connexion.request.get_json())  # noqa: E501
+        
+    if(len(login_mgmt.loggedin_user) ==0):
+        if(db.child("userlist").child(body.id).child(body.id).get().val()== None 
+        and 
+        db.child("userlist").child(body.id).child("pass").get().val()!= body.passwd):
+            return "Invalid ID pass"              # Login ID Pass error
+        else:           #correct ID pass
+            if(db.child("userlist").child(body.id).get().val()!= None):
+                if(body.option == 0):
+                    #Modify username
+                    db.child("userlist").child(id_).update({ 'id' : body.modification },token)       #changed ID: name 
+                    data = db.child("userlist").child(id_).get().val() # got the data copy offline
+                    db.child("userlist").child(id_).remove(token)    # Deleted it
+                    db.child("userlist").child(body.modification).set(data,token)            
 
-    if(db.child("userlist").child(id).get().val()!= None):
-        #do stuff
-        if(body.Option == 0):
-            #Modify username
-            db.child("userlist").child(body.id).update("{ 'id' : '"+body.Modification+"' }",token)
-            db.child("userlist").update("{'userlist' : '"+body.Modification+"'}")
-            #db.child("userlist").update("{'id':"+body.Modification+"}",token)
-            return(db.child("userlist").child(body.Modification).get().val())
-        elif(body.Option == 1):
-            #Modify pass
-            pass
-        else:
-            #Error
-            pass
-    else:
-        return 404
-    #return 'do some magic!'
+                    return(db.child("userlist").child(body.modification).get().val())
+                elif(body.option == 1):
+                    #Modify pass
+                    db.child("userlist").child(id_).update({ 'pass' : body.modification },token)       #changed pass: val 
+                    return(db.child("userlist").child(body.modification).get().val())
+                else:
+                    
+                    #Error
+                    return "Invalid argument"
+            else:
+                return 404      #user not found

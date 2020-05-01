@@ -44,14 +44,16 @@ def execute_query(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = UserQuery.from_dict(connexion.request.get_json())  # noqa: E501
-    if (len(uc.login_mgmt.loggedin_user) == 1):
+    if(db.child("userlist").child(body.id).child(body.id).get().val()== None 
+    and 
+    db.child("userlist").child(body.id).child("pass").get().val()!= body.passwd):
+        return 401              # Login ID Pass error
+    else:                   #Login successful
         #query = 'r"'+body.query+'"'
         op = el.obj.execute(body.query,dix.en,dix.select_dictionary(body.lang))      #Executing query
-
         data = {
-            #str('"'+body.query+'"'):str('"'+op+'"')
             body.query : op
-        }
+        }                               #Generating JSON to be put online
         data = json.dumps(data)
         db.child("userlist").child(body.user_id).child("query").child(body.lang).push(data,token) #Updating query online with output
         return op
@@ -69,8 +71,15 @@ def test_query(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = TestQuery.from_dict(connexion.request.get_json())  # noqa: E501
-    #eng = dix.en_final
-    #if(body.lang == "mar"):
-    #    tgt = dix.mar_final
-    return 'not ok'#el.obj.execute(str(body.query),eng,tgt)
+    if (len(uc.login_mgmt.loggedin_user) == 1):
+        op = el.obj.execute(body.query,dix.en,dix.select_dictionary(body.lang))    #eng 
+        
+        data = {
+            body.query : op
+        }                               #Generating JSON to be put online
+        data = json.dumps(data)
+        db.child("userlist").child(uc.login_mgmt.loggedin_user[0]).child("query").child(body.lang).push(data,token) #Updating query online with output
+        return op
+    else:
+        return 'Please Login first'
 
