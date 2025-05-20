@@ -1,0 +1,60 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or your default branch
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./frontend
+
+      - name: Build Next.js app
+        run: npm run build
+        working-directory: ./frontend
+        env:
+          # If your Next.js app needs environment variables at build time,
+          # define them here. For example:
+          # API_URL: ${{ secrets.API_URL }}
+          # For GitHub Pages, if your repo is something like your-username.github.io,
+          # then basePath is not needed.
+          # If your repo is your-username/my-repo, then you might need to set
+          # the basePath in next.config.js and potentially an assetPrefix.
+          # For now, we'll assume no basePath is needed.
+          NEXT_PUBLIC_BASE_PATH: "" # Adjust if deploying to a subdirectory like /repo-name
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./frontend/out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
